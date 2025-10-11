@@ -12,11 +12,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="App.config">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </None>
+      <Compile Update="Pages\LoginForm.cs">
+        <DependentUpon>LoginForm.cshtml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
