@@ -1,0 +1,52 @@
+@page
+@model WindowsFormApp.Pages.StudentsModel
+@{
+    ViewData["Title"] = "Manage Students";
+}
+
+<h2>Student Management</h2>
+
+<div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+    <h4>Add New Student</h4>
+    <form method="post">
+        <input type="text" name="StudentName" placeholder="Name" required />
+        <input type="date" name="DateOfBirth" required />
+        <input type="text" name="City" placeholder="City" required />
+        <input type="number" name="Age" placeholder="Age" required />
+        <input type="number" name="YearOfEnroll" placeholder="Year" required />
+        <button type="submit" asp-page-handler="Add">Add Student</button>
+    </form>
+</div>
+
+<table border="1" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>City</th>
+        <th>Age</th>
+        <th>Year of Enroll</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.StudentList)
+    {
+        <tr>
+            <td>@row["StudentID"]</td>
+            <td>@row["StudentName"]</td>
+            <td>@Convert.ToDateTime(row["DateOfBirth"]).ToString("yyyy-MM-dd")</td>
+            <td>@row["City"]</td>
+            <td>@row["Age"]</td>
+            <td>@row["YearOfEnroll"]</td>
+            <td>
+                <form method="post" asp-page-handler="Delete" style="display:inline;">
+                    <input type="hidden" name="StudentID" value="@row["StudentID"]" />
+                    <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
