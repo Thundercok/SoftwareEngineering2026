@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "oAT0GwirTwQ=",
+  "success": true,
+  "projectFilePath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab2/Home/WindowsFormApp/WindowsFormApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/thundercock2/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.4.0/runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/Users/thundercock2/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/Users/thundercock2/.nuget/packages/runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/Users/thundercock2/.nuget/packages/runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/Users/thundercock2/.nuget/packages/system.configuration.configurationmanager/10.0.5/system.configuration.configurationmanager.10.0.5.nupkg.sha512",
+    "/Users/thundercock2/.nuget/packages/system.data.sqlclient/4.9.1/system.data.sqlclient.4.9.1.nupkg.sha512",
+    "/Users/thundercock2/.nuget/packages/system.security.cryptography.protecteddata/10.0.5/system.security.cryptography.protecteddata.10.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
