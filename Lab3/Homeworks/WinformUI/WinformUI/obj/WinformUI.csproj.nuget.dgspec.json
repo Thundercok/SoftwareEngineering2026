@@ -1,0 +1,234 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/WinformUI/WinformUI.csproj": {}
+  },
+  "projects": {
+    "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/BLL/BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/BLL/BLL.csproj",
+        "projectName": "BLL",
+        "projectPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/BLL/BLL.csproj",
+        "packagesPath": "/Users/thundercock2/.nuget/packages/",
+        "outputPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/BLL/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/thundercock2/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj": {
+                "projectPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj",
+        "packagesPath": "/Users/thundercock2/.nuget/packages/",
+        "outputPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/thundercock2/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/WinformUI/WinformUI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/WinformUI/WinformUI.csproj",
+        "projectName": "WinformUI",
+        "projectPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/WinformUI/WinformUI.csproj",
+        "packagesPath": "/Users/thundercock2/.nuget/packages/",
+        "outputPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/WinformUI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/thundercock2/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/BLL/BLL.csproj": {
+                "projectPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/BLL/BLL.csproj"
+              },
+              "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj": {
+                "projectPath": "/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
