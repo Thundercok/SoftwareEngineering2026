@@ -1,4 +1,5 @@
-﻿public class CustomerRepository {
+﻿ using DAL;
+public class CustomerRepository {
     private readonly Exer1DbContext _context;
     public CustomerRepository(Exer1DbContext context) => _context = context;
 

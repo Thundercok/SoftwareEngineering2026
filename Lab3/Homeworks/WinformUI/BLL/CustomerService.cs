@@ -1,4 +1,5 @@
-﻿namespace BLL;
+﻿ namespace BLL;
+ using DAL;
 
 public class CustomerService
 {

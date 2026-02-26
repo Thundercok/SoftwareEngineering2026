@@ -1,0 +1,13 @@
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.csproj.AssemblyReference.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.AssemblyInfoInputs.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.AssemblyInfo.cs
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.csproj.CoreCompileInputs.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.sourcelink.json
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/bin/Debug/net9.0/DAL.deps.json
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/bin/Debug/net9.0/DAL.dll
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/bin/Debug/net9.0/DAL.pdb
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.dll
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/refint/DAL.dll
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/DAL.pdb
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab3/Homeworks/WinformUI/DAL/obj/Debug/net9.0/ref/DAL.dll

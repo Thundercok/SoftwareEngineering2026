@@ -20,4 +20,9 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Account\Index.cshtml" />
+      <AdditionalFiles Include="Views\Account\Privacy.cshtml" />
+    </ItemGroup>
+
 </Project>
