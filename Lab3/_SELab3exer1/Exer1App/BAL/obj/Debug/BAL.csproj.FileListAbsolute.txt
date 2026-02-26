@@ -1,0 +1,15 @@
+E:\_SELab3exer1\Exer1App\BAL\obj\Debug\BAL.csproj.AssemblyReference.cache
+E:\_SELab3exer1\Exer1App\BAL\obj\Debug\BAL.csproj.CoreCompileInputs.cache
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\BAL.dll
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\BAL.pdb
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\DAL.dll
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\EntityFramework.dll
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\DAL.pdb
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\DAL.dll.config
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\EntityFramework.xml
+E:\_SELab3exer1\Exer1App\BAL\obj\Debug\BAL.csproj.Up2Date
+E:\_SELab3exer1\Exer1App\BAL\obj\Debug\BAL.dll
+E:\_SELab3exer1\Exer1App\BAL\obj\Debug\BAL.pdb
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\BAL.dll.config
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\_SELab3exer1\Exer1App\BAL\bin\Debug\EntityFramework.SqlServer.xml
