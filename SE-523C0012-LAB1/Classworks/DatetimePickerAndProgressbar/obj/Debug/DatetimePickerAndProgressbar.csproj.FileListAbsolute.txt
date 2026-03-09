@@ -1,0 +1,10 @@
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.csproj.AssemblyReference.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.Form1.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.Properties.Resources.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.csproj.GenerateResource.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.csproj.CoreCompileInputs.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\bin\Debug\DatetimePickerAndProgressbar.exe.config
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\bin\Debug\DatetimePickerAndProgressbar.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\bin\Debug\DatetimePickerAndProgressbar.pdb
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\DatetimePickerAndProgressbar\obj\Debug\DatetimePickerAndProgressbar.pdb
