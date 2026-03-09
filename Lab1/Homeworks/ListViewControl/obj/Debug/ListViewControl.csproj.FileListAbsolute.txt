@@ -1,0 +1,10 @@
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\bin\Debug\ListViewControl.exe.config
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\bin\Debug\ListViewControl.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\bin\Debug\ListViewControl.pdb
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.csproj.AssemblyReference.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.Form1.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.Properties.Resources.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.csproj.GenerateResource.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.csproj.CoreCompileInputs.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ListViewControl\obj\Debug\ListViewControl.pdb

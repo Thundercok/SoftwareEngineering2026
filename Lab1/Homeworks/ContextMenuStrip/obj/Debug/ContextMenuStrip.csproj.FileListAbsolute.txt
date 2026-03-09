@@ -1,0 +1,10 @@
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\bin\Debug\ContextMenuStrip.exe.config
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\bin\Debug\ContextMenuStrip.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\bin\Debug\ContextMenuStrip.pdb
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.csproj.AssemblyReference.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.Form1.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.Properties.Resources.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.csproj.GenerateResource.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.csproj.CoreCompileInputs.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\ContextMenuStrip\obj\Debug\ContextMenuStrip.pdb

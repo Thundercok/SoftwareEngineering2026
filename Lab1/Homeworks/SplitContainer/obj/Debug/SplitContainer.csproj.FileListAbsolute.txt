@@ -1,0 +1,10 @@
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\bin\Debug\SplitContainer.exe.config
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\bin\Debug\SplitContainer.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\bin\Debug\SplitContainer.pdb
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.csproj.AssemblyReference.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.Form1.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.Properties.Resources.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.csproj.GenerateResource.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.csproj.CoreCompileInputs.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\SplitContainer\obj\Debug\SplitContainer.pdb

@@ -1,0 +1,10 @@
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\bin\Debug\TabControl.exe.config
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\bin\Debug\TabControl.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\bin\Debug\TabControl.pdb
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.csproj.AssemblyReference.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.Form1.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.Properties.Resources.resources
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.csproj.GenerateResource.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.csproj.CoreCompileInputs.cache
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.exe
+C:\Users\NUC I3\source\repos\SoftwareEngineering2026\LAB1_523C0012\TabControl\obj\Debug\TabControl.pdb
