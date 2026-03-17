@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-
 namespace BAL
 {
     public class CustomerService
@@ -27,6 +26,16 @@ namespace BAL
         public List<Customer> GetAllCustomers()
         {
             return _customerRepository.GetAllCustomers();
+        }
+        public void UpdateCustomer(Customer customer)
+        {
+            // Business logic before updating customer
+            _customerRepository.UpdateCustomer(customer);
+        }
+        public void DeleteCustomer(int id)
+        {
+            // Business logic before deleting customer
+            _customerRepository.DeleteCustomer(id);
         }
     }
 }

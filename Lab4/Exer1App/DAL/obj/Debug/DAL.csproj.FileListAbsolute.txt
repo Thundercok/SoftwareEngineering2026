@@ -10,3 +10,15 @@ E:\_SELab3exer1\Exer1App\DAL\bin\Debug\EntityFramework.SqlServer.xml
 E:\_SELab3exer1\Exer1App\DAL\obj\Debug\DAL.csproj.Up2Date
 E:\_SELab3exer1\Exer1App\DAL\obj\Debug\DAL.dll
 E:\_SELab3exer1\Exer1App\DAL\obj\Debug\DAL.pdb
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\DAL.dll.config
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\DAL.dll
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\DAL.pdb
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\EntityFramework.dll
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\EntityFramework.xml
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\obj\Debug\DAL.dll
+C:\Users\NUC I3\Documents\GitHub\SoftwareEngineering2026\Lab4\Exer1App\DAL\obj\Debug\DAL.pdb
