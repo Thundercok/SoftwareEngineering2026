@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Exer1App"
+    "\\Exer1App",
+    "\\Exer1App\\BAL",
+    "\\Exer1App\\DAL"
   ],
   "SelectedNode": "\\Exer1App\\Exer1App.sln",
   "PreviewInSolutionExplorer": false
