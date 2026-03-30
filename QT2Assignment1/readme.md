@@ -12,7 +12,7 @@ An automated **Ticket Vendor Machine (TVM)** system for the BenThanh Metro (Ho C
 ## Deliverables Summary
 
 | # | Task                                               | Done |
-| - | -------------------------------------------------- | ---- |
+| :-: | -------------------------------------------------- | ---- |
 | 1 | Requirements Q&A (Excel)                           | Y    |
 | 2 | Functional / Non-Functional / Domain Requirements  | Y    |
 | 3 | Use Case Diagram + Descriptions                    |      |
