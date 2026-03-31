@@ -11,29 +11,37 @@ An automated **Ticket Vendor Machine (TVM)** system for the BenThanh Metro (Ho C
 
 ## Deliverables Summary
 
-| # | Task                                               | Done |
-| :-: | -------------------------------------------------- | ---- |
-| 1 | Requirements Q&A (Excel)                           | Y    |
-| 2 | Functional / Non-Functional / Domain Requirements  | Y    |
-| 3 | Use Case Diagram + Descriptions                    |      |
-| 4 | Activity Diagram (Buy Ticket + System Integration) |      |
-| 5 | Sequence + State Chart + Class Diagram             |      |
-| 6 | Wireframe / Mockup (4 screens)                     |      |
-| 7 | Architecture (MVC) + Deployment Diagram            |      |
-| 8 | C# + MSSQL Demo                                    |      |
-| 9 | GitHub Upload                                      | Y    |
+| # | Task                                               | Done | Who  |
+| :-: | -------------------------------------------------- | ---- | ---- |
+| 1 | Requirements Q&A (Excel)                           | Y    | 2    |
+| 2 | Functional / Non-Functional / Domain Requirements  | Y    | 1    |
+| 3 | Use Case Diagram + Descriptions                    |      | 2    |
+| 4 | Activity Diagram (Buy Ticket + System Integration) |      | 2    |
+| 5 | Sequence + State Chart + Class Diagram             |      | 2    |
+| 6 | Wireframe / Mockup (4 screens)                     |      | 1    |
+| 7 | Architecture (MVC) + Deployment Diagram            |      | 1, 2 |
+| 8 | C# + MSSQL Demo                                    |      | 1    |
+| 9 | GitHub Upload                                      | Y    | 1, 2 |
 
 ## Group Members
 
-| ID       | Name           | Role(s)      |
-| -------- | -------------- | ------------ |
-| 523c0012 | Huynh Nhat Huy | Update Later |
-|          |                |              |
+| ID       | Name           | Role(s)      | ID |
+| -------- | -------------- | ------------ | -- |
+| 523c0012 | Huynh Nhat Huy | Update Later | 1  |
+| 523v0002 | Bui Quang Huy  | Update Later | 2  |
 
 ## AI Usages
 
-Claude
+Claude: General guide
 
-Gemini
+Gemini: 
 
 Copilot
+
+## References
+
+ISO/IEC 25010 – Software Quality Requirements
+PCI-DSS v4.0 – Payment Card Industry Data Security Standard
+SBV Circular 39/2014/TT-NHNN – Vietnam e-Payment Regulations
+Vietnam Personal Data Protection Decree 13/2023/NĐ-CP
+HCMC Department of Transport – BenThanh Metro Fare Policy 2025
