@@ -7,3 +7,4 @@
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab6/Homeworks/ASPNETMVCStudent/obj/Debug/net10.0/ASPNETMVCStudent.RazorAssemblyInfo.cache
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab6/Homeworks/ASPNETMVCStudent/obj/Debug/net10.0/ASPNETMVCStudent.RazorAssemblyInfo.cs
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab6/Homeworks/ASPNETMVCStudent/obj/Debug/net10.0/ASPNETMVCStudent.sourcelink.json
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab6/Homeworks/ASPNETMVCStudent/obj/Debug/net10.0/ASPNETMVCStudent.csproj.AssemblyReference.cache

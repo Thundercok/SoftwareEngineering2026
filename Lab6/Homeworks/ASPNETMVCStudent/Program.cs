@@ -1,7 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
-
 using Microsoft.EntityFrameworkCore;
-using ASPNETVMVCStudents.Models; // Or whatever your project namespace is
+using ASPNETMVCStudent.Models; 
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
