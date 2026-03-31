@@ -30,11 +30,17 @@ An automated **Ticket Vendor Machine (TVM)** system for the BenThanh Metro (Ho C
 | 523c0012 | Huynh Nhat Huy | Update Later | 1  |
 | 523v0002 | Bui Quang Huy  | Update Later | 2  |
 
+
+## Usecases Diagram's link
+
+https://app.diagrams.net/?src=about#HThundercok%2FSoftwareEngineering2026%2Fmain%2FQT2Assignment1%2Fusecase.drawio#%7B%22pageId%22%3A%22AAIvdWaikjS7hFGzl4Ta%22%7D
+
+
 ## AI Usages
 
 Claude: General guide
 
-Gemini: 
+Gemini:
 
 Copilot
 
