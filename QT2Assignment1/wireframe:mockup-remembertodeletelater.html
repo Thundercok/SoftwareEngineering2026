@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mua vé — Metro TP.HCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:    #00843D;
+  --green-d:  #005F2C;
+  --green-l:  #E8F5EE;
+  --green-m:  #C8E6D4;
+  --line1:    #00843D;
+  --gray-50:  #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-400: #9CA3AF;
+  --gray-600: #4B5563;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --red:      #DC2626;
+  --amber:    #D97706;
+  --blue:     #1D4ED8;
+  --momo:     #B0006E;
+  --vnpay:    #005BAA;
+  --zalo:     #0068FF;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow:    0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+  --radius:    14px;
+  --radius-sm: 8px;
+  --font: 'Be Vietnam Pro', system-ui, sans-serif;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: var(--font);
+  background: var(--gray-50);
+  color: var(--gray-900);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ───────────────────────────────────── */
+header {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 480px; margin: 0 auto;
+  padding: 0 16px;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-icon svg { width: 20px; height: 20px; fill: #fff; }
+.logo-text { line-height: 1.15; }
+.logo-text strong {
+  display: block; font-size: 14px; font-weight: 700;
+  color: var(--gray-900); letter-spacing: -0.2px;
+}
+.logo-text span {
+  display: block; font-size: 11px; color: var(--gray-400);
+  font-weight: 400;
+}
+.header-lang {
+  font-size: 12px; color: var(--gray-600); font-weight: 500;
+  background: var(--gray-100); border: none;
+  padding: 6px 12px; border-radius: 20px; cursor: pointer;
+}
+
+/* ── MAIN CONTENT ─────────────────────────────── */
+main {
+  max-width: 480px; margin: 0 auto;
+  padding: 0 16px 100px;
+}
+
+/* ── HERO STRIP ───────────────────────────────── */
+.hero {
+  background: var(--green);
+  margin: 0 -16px;
+  padding: 24px 16px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 32px;
+  background: var(--gray-50);
+  border-radius: 24px 24px 0 0;
+}
+.hero-line-map {
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; padding: 8px 0 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.hero-line-map::-webkit-scrollbar { display: none; }
+.hero-stop {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; flex-shrink: 0;
+}
+.hero-stop-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.8);
+  transition: all 0.2s;
+}
+.hero-stop-dot.active {
+  width: 14px; height: 14px;
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+}
+.hero-stop-label {
+  font-size: 10px; color: rgba(255,255,255,0.8); font-weight: 500;
+  white-space: nowrap; max-width: 56px; text-align: center;
+  line-height: 1.2;
+}
+.hero-stop-label.active { color: #fff; font-weight: 700; }
+.hero-connector {
+  height: 3px; flex: 1; min-width: 16px;
+  background: rgba(255,255,255,0.35);
+  align-self: center; margin-bottom: 20px;
+  flex-shrink: 0;
+}
+.hero-connector.passed { background: rgba(255,255,255,0.8); }
+.hero-title {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;
+}
+.hero-sub {
+  font-size: 20px; font-weight: 800; color: #fff;
+  letter-spacing: -0.5px; line-height: 1.2;
+}
+
+/* ── PLANNER CARD ─────────────────────────────── */
+.planner-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  margin-top: -32px;
+  position: relative; z-index: 10;
+  overflow: hidden;
+}
+
+/* FROM / TO SELECTOR */
+.route-selector { padding: 0; }
+.route-field {
+  display: flex; align-items: center;
+  padding: 16px 18px;
+  cursor: pointer; gap: 14px;
+  transition: background 0.15s;
+  position: relative;
+}
+.route-field:hover { background: var(--gray-50); }
+.route-field:active { background: var(--gray-100); }
+.route-icon-wrap {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.icon-from { background: var(--green-l); }
+.icon-to   { background: #EFF6FF; }
+.dot-from { width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
+.dot-to   { width: 12px; height: 12px; border-radius: 50%; background: var(--blue); border: 3px solid var(--blue); background: transparent; }
+.route-field-content { flex: 1; min-width: 0; }
+.route-field-label {
+  font-size: 11px; color: var(--gray-400); font-weight: 500;
+  letter-spacing: 0.3px; text-transform: uppercase;
+  display: block; margin-bottom: 2px;
+}
+.route-field-value {
+  font-size: 16px; font-weight: 600; color: var(--gray-900);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.route-field-value.placeholder { color: var(--gray-400); font-weight: 400; }
+.route-chevron { color: var(--gray-400); font-size: 18px; flex-shrink: 0; }
+
+.route-divider {
+  display: flex; align-items: center;
+  padding: 0 18px; gap: 14px;
+}
+.route-divider-line {
+  width: 36px; display: flex; justify-content: center; flex-shrink: 0;
+}
+.route-divider-line::before {
+  content: ''; display: block; width: 1px; height: 16px;
+  background: var(--gray-200);
+}
+.route-divider-sep { flex: 1; height: 1px; background: var(--gray-200); }
+
+.swap-btn {
+  position: absolute; right: 56px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%;
+  background: #fff; border: 1.5px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2; font-size: 16px;
+  transition: all 0.2s;
+}
+.swap-btn:hover { border-color: var(--green); transform: translateY(-50%) rotate(180deg); }
+.route-divider-area { position: relative; }
+
+/* TRIP TYPE TABS */
+.trip-tabs {
+  display: flex; border-top: 1px solid var(--gray-200);
+}
+.trip-tab {
+  flex: 1; padding: 12px 8px; text-align: center;
+  font-size: 13px; font-weight: 600; color: var(--gray-400);
+  background: none; border: none; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.trip-tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+/* SEARCH BTN */
+.search-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: calc(100% - 32px); margin: 0 16px 16px;
+  padding: 15px;
+  background: var(--green); color: #fff;
+  border: none; border-radius: 12px;
+  font-family: var(--font); font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s;
+  letter-spacing: -0.1px;
+}
+.search-btn:hover { background: var(--green-d); }
+.search-btn:active { transform: scale(0.98); }
+
+/* ── STATION PICKER SHEET ─────────────────────── */
+.sheet-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 200; display: none; opacity: 0;
+  transition: opacity 0.25s;
+  backdrop-filter: blur(2px);
+}
+.sheet-overlay.open { display: flex; align-items: flex-end; }
+.sheet-overlay.visible { opacity: 1; }
+
+.sheet {
+  background: #fff; width: 100%; max-height: 85dvh;
+  border-radius: 20px 20px 0 0;
+  display: flex; flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  max-width: 480px; margin: 0 auto;
+}
+.sheet.open { transform: translateY(0); }
+
+.sheet-handle {
+  width: 36px; height: 4px; background: var(--gray-200);
+  border-radius: 2px; margin: 10px auto 0;
+  flex-shrink: 0;
+}
+.sheet-header {
+  padding: 16px 18px 0;
+  flex-shrink: 0;
+}
+.sheet-title {
+  font-size: 17px; font-weight: 700; color: var(--gray-900);
+  margin-bottom: 12px;
+}
+.sheet-search {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--gray-100); border-radius: 12px;
+  padding: 0 14px; margin-bottom: 12px;
+}
+.sheet-search svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--gray-400); }
+.sheet-search input {
+  flex: 1; background: none; border: none; outline: none;
+  padding: 12px 0; font-family: var(--font); font-size: 15px;
+  color: var(--gray-900);
+}
+.sheet-search input::placeholder { color: var(--gray-400); }
+
+.station-scroll {
+  overflow-y: auto; flex: 1;
+  padding: 0 18px 32px;
+  -webkit-overflow-scrolling: touch;
+}
+.station-group-label {
+  font-size: 11px; font-weight: 700; color: var(--gray-400);
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 12px 0 6px;
+  position: sticky; top: 0; background: #fff;
+}
+.station-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--gray-100);
+  cursor: pointer; transition: all 0.1s;
+}
+.station-row:last-child { border-bottom: none; }
+.station-row:active { opacity: 0.7; }
+.stn-dot-wrap {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--green-l);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stn-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+.stn-info { flex: 1; min-width: 0; }
+.stn-name { font-size: 15px; font-weight: 600; color: var(--gray-900); }
+.stn-name-en { font-size: 12px; color: var(--gray-400); margin-top: 1px; }
+.stn-badge {
+  font-size: 11px; font-weight: 600; color: var(--green-d);
+  background: var(--green-l); padding: 3px 8px; border-radius: 6px;
+  flex-shrink: 0;
+}
+.stn-selected .stn-dot-wrap { background: var(--green); }
+.stn-selected .stn-dot { background: #fff; }
+.stn-selected .stn-name { color: var(--green); }
+
+/* ── JOURNEY RESULT ───────────────────────────── */
+.section-title {
+  font-size: 13px; font-weight: 700; color: var(--gray-400);
+  letter-spacing: 0.8px; text-transform: uppercase;
+  margin: 24px 0 10px;
+}
+
+.journey-card {
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.journey-header {
+  background: var(--green); padding: 18px 18px 16px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.journey-route-text { color: #fff; }
+.journey-route-main {
+  font-size: 17px; font-weight: 800; letter-spacing: -0.3px;
+  line-height: 1.2; margin-bottom: 4px;
+}
+.journey-route-via {
+  font-size: 12px; color: rgba(255,255,255,0.75);
+}
+.journey-fare-box { text-align: right; }
+.journey-fare-amt {
+  font-size: 26px; font-weight: 800; color: #fff;
+  letter-spacing: -1px; line-height: 1;
+}
+.journey-fare-unit {
+  font-size: 12px; color: rgba(255,255,255,0.75); font-weight: 500;
+}
+
+/* Route spine */
+.route-spine { padding: 18px; }
+.spine-row {
+  display: flex; align-items: flex-start; gap: 14px; position: relative;
+}
+.spine-line-col {
+  width: 20px; display: flex; flex-direction: column;
+  align-items: center; flex-shrink: 0; gap: 0;
+}
+.spine-dot {
+  width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+  border: 2.5px solid var(--green); background: #fff;
+  position: relative; z-index: 1;
+}
+.spine-dot.filled { background: var(--green); }
+.spine-dot.mid {
+  width: 8px; height: 8px;
+  border-color: var(--gray-300); background: var(--gray-300);
+  margin: 0 auto;
+}
+.spine-vert {
+  width: 2px; background: var(--green); flex: 1;
+}
+.spine-vert.dashed {
+  background: repeating-linear-gradient(to bottom,
+    var(--green-m) 0px, var(--green-m) 4px,
+    transparent 4px, transparent 8px);
+}
+.spine-content { flex: 1; padding-bottom: 18px; }
+.spine-content.last { padding-bottom: 0; }
+.spine-station-name {
+  font-size: 15px; font-weight: 700; color: var(--gray-900);
+  line-height: 1; margin-bottom: 3px;
+}
+.spine-station-name.dim { color: var(--gray-600); font-weight: 500; font-size: 14px; }
+.spine-station-meta { font-size: 12px; color: var(--gray-400); }
+.spine-middle-info {
+  font-size: 12px; color: var(--gray-400); font-style: italic;
+  padding: 4px 0 12px;
+}
+
+/* Journey details grid */
+.journey-details {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  border-top: 1px solid var(--gray-100);
+}
+.detail-item {
+  padding: 14px 14px;
+  border-right: 1px solid var(--gray-100);
+  text-align: center;
+}
+.detail-item:last-child { border-right: none; }
+.detail-val {
+  font-size: 17px; font-weight: 800; color: var(--gray-900);
+  letter-spacing: -0.5px;
+}
+.detail-label { font-size: 11px; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
+
+/* ── TICKET QUANTITY ──────────────────────────── */
+.qty-row {
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 12px;
+}
+.qty-label { font-size: 15px; font-weight: 600; color: var(--gray-900); }
+.qty-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.qty-controls { display: flex; align-items: center; gap: 0; }
+.qty-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--gray-200); background: #fff;
+  font-size: 20px; font-weight: 300; color: var(--gray-600);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.15s;
+}
+.qty-btn:hover { border-color: var(--green); color: var(--green); }
+.qty-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.qty-num {
+  width: 44px; text-align: center;
+  font-size: 18px; font-weight: 700; color: var(--gray-900);
+}
+
+/* ── PAYMENT SECTION ──────────────────────────── */
+.pay-section { margin-top: 12px; }
+.pay-group {
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.pay-option {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  cursor: pointer; border-bottom: 1px solid var(--gray-100);
+  transition: background 0.1s;
+}
+.pay-option:last-child { border-bottom: none; }
+.pay-option:hover { background: var(--gray-50); }
+.pay-option:active { background: var(--gray-100); }
+.pay-radio {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.15s;
+}
+.pay-radio.checked { border-color: var(--green); background: var(--green); }
+.pay-radio.checked::after {
+  content: ''; width: 8px; height: 8px; border-radius: 50%; background: #fff;
+}
+.pay-logo {
+  width: 44px; height: 28px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: #fff;
+  flex-shrink: 0; letter-spacing: 0.3px;
+}
+.pay-info { flex: 1; }
+.pay-name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+.pay-desc { font-size: 12px; color: var(--gray-400); margin-top: 1px; }
+
+/* ── BOTTOM STICKY BAR ────────────────────────── */
+.sticky-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fff; border-top: 1px solid var(--gray-200);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  z-index: 50;
+  display: none;
+}
+.sticky-bar.visible { display: block; }
+.sticky-bar-inner {
+  max-width: 480px; margin: 0 auto;
+  display: flex; align-items: center; gap: 14px;
+}
+.sticky-total { flex: 1; }
+.sticky-total-amt {
+  font-size: 20px; font-weight: 800; color: var(--gray-900);
+  letter-spacing: -0.5px;
+}
+.sticky-total-label { font-size: 11px; color: var(--gray-400); }
+.buy-btn {
+  flex: 1.5;
+  padding: 14px 20px;
+  background: var(--green); color: #fff;
+  border: none; border-radius: 12px;
+  font-family: var(--font); font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s;
+}
+.buy-btn:hover { background: var(--green-d); }
+.buy-btn:active { transform: scale(0.98); }
+
+/* ── SUCCESS SHEET ────────────────────────────── */
+.success-sheet {
+  position: fixed; inset: 0; z-index: 300;
+  background: #fff; display: none;
+  flex-direction: column; overflow-y: auto;
+}
+.success-sheet.open { display: flex; }
+.success-header-bar {
+  background: var(--green); padding: 52px 20px 32px;
+  text-align: center;
+}
+.success-checkmark {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+.success-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.success-sub { font-size: 14px; color: rgba(255,255,255,0.8); }
+
+/* Physical ticket */
+.ticket-wrap {
+  padding: 20px;
+  max-width: 480px; margin: 0 auto; width: 100%;
+}
+.ticket-paper {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+}
+.ticket-paper::before, .ticket-paper::after {
+  content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gray-50); z-index: 2;
+  box-shadow: inset 0 0 0 1.5px var(--gray-200);
+}
+.ticket-paper::before { left: -11px; }
+.ticket-paper::after { right: -11px; }
+
+.tkt-head { background: var(--green); padding: 20px; }
+.tkt-head-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.tkt-brand { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.3px; }
+.tkt-valid-chip {
+  background: rgba(255,255,255,0.2); border-radius: 20px;
+  padding: 3px 10px; font-size: 11px; font-weight: 700; color: #fff;
+}
+.tkt-route { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.2; }
+.tkt-route-via { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+.tkt-body { padding: 16px 20px; }
+.tkt-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 0; border-bottom: 1px solid var(--gray-100);
+}
+.tkt-row:last-child { border-bottom: none; }
+.tkt-key { font-size: 12px; color: var(--gray-400); font-weight: 500; }
+.tkt-val { font-size: 13px; font-weight: 700; color: var(--gray-800); font-variant-numeric: tabular-nums; }
+
+.tkt-barcode-area {
+  padding: 16px 20px 20px;
+  border-top: 2px dashed var(--gray-200);
+  text-align: center;
+}
+.tkt-barcode {
+  height: 56px; border-radius: 4px; margin-bottom: 8px;
+  background: repeating-linear-gradient(90deg,
+    #1a1a1a 0,#1a1a1a 2px, transparent 2px, transparent 4px,
+    #1a1a1a 4px,#1a1a1a 5px, transparent 5px, transparent 7px,
+    #1a1a1a 7px,#1a1a1a 9px, transparent 9px, transparent 12px,
+    #1a1a1a 12px,#1a1a1a 13px, transparent 13px, transparent 15px,
+    #1a1a1a 15px,#1a1a1a 18px, transparent 18px, transparent 21px,
+    #1a1a1a 21px,#1a1a1a 22px, transparent 22px, transparent 25px,
+    #1a1a1a 25px,#1a1a1a 27px, transparent 27px, transparent 30px,
+    #1a1a1a 30px,#1a1a1a 32px, transparent 32px, transparent 34px,
+    #1a1a1a 34px,#1a1a1a 35px, transparent 35px, transparent 38px
+  );
+}
+.tkt-barcode-num { font-size: 11px; color: var(--gray-400); letter-spacing: 2px; font-variant-numeric: tabular-nums; }
+.tkt-note {
+  margin: 12px 20px; padding: 10px 14px;
+  background: var(--green-l); border-radius: 10px;
+  font-size: 12px; color: var(--green-d); line-height: 1.5;
+}
+
+.done-btn {
+  margin: 16px 20px 32px;
+  display: block; width: calc(100% - 40px);
+  padding: 15px; background: var(--green); color: #fff;
+  border: none; border-radius: 12px;
+  font-family: var(--font); font-size: 15px; font-weight: 700;
+  cursor: pointer; text-align: center;
+}
+
+/* ── INFO CHIPS ───────────────────────────────── */
+.chips-row {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
+}
+.chip {
+  display: flex; align-items: center; gap: 6px;
+  background: #fff; border: 1px solid var(--gray-200);
+  border-radius: 20px; padding: 7px 12px;
+  font-size: 12px; font-weight: 500; color: var(--gray-600);
+  box-shadow: var(--shadow-sm);
+}
+.chip-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+/* ── EMPTY STATE ──────────────────────────────── */
+.empty-hint {
+  text-align: center; padding: 40px 20px;
+  color: var(--gray-400);
+}
+.empty-hint-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
+.empty-hint-text { font-size: 14px; line-height: 1.6; }
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (min-width: 481px) {
+  .sheet, .sticky-bar-inner { max-width: 480px; }
+  .sheet-overlay { justify-content: center; }
+  .success-sheet { align-items: center; }
+  .success-sheet > * { max-width: 480px; width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      <div class="logo-text">
+        <strong>Metro TP.HCM</strong>
+        <span>Tuyến 1 · Ben Thanh – Suối Tiên</span>
+      </div>
+    </a>
+    <button class="header-lang" onclick="toggleLang()">🇻🇳 VI</button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-title">Tuyến 1</div>
+    <div class="hero-sub">Đặt vé<br>nhanh chóng</div>
+    <div class="hero-line-map" id="hero-line-map"><!-- JS renders --></div>
+  </div>
+
+  <!-- PLANNER CARD -->
+  <div class="planner-card">
+    <div class="route-selector">
+      <!-- FROM -->
+      <div class="route-field" onclick="openSheet('from')">
+        <div class="route-icon-wrap icon-from"><div class="dot-from"></div></div>
+        <div class="route-field-content">
+          <span class="route-field-label">Từ · From</span>
+          <div class="route-field-value placeholder" id="from-display">Chọn ga xuất phát</div>
+        </div>
+        <div class="route-chevron">›</div>
+      </div>
+
+      <!-- DIVIDER WITH SWAP -->
+      <div class="route-divider-area">
+        <div class="route-divider">
+          <div class="route-divider-line"></div>
+          <div class="route-divider-sep"></div>
+        </div>
+        <button class="swap-btn" onclick="swapStations()" title="Đổi chiều">⇅</button>
+      </div>
+
+      <!-- TO -->
+      <div class="route-field" onclick="openSheet('to')">
+        <div class="route-icon-wrap icon-to"><div class="dot-to"></div></div>
+        <div class="route-field-content">
+          <span class="route-field-label">Đến · To</span>
+          <div class="route-field-value placeholder" id="to-display">Chọn ga đến</div>
+        </div>
+        <div class="route-chevron">›</div>
+      </div>
+    </div>
+
+    <!-- TRIP TYPE TABS -->
+    <div class="trip-tabs">
+      <button class="trip-tab active" onclick="setTripType('one',this)">Một chiều</button>
+      <button class="trip-tab" onclick="setTripType('round',this)">Khứ hồi</button>
+    </div>
+
+    <div style="height:12px;"></div>
+
+    <!-- SEARCH BTN -->
+    <button class="search-btn" onclick="planJourney()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+      Xem chuyến đi
+    </button>
+  </div>
+
+  <!-- INFO CHIPS -->
+  <div class="chips-row">
+    <div class="chip"><div class="chip-dot" style="background:var(--green)"></div> Tuyến 1 đang hoạt động</div>
+    <div class="chip"><div class="chip-dot" style="background:var(--amber)"></div> 5:00 – 23:00</div>
+    <div class="chip">🔒 Thanh toán bảo mật</div>
+  </div>
+
+  <!-- JOURNEY RESULT -->
+  <div id="journey-result" style="display:none;">
+    <div class="section-title">Thông tin chuyến đi</div>
+    <div class="journey-card" id="journey-card"><!-- JS renders --></div>
+
+    <!-- QUANTITY -->
+    <div class="section-title" style="margin-top:20px;">Số vé</div>
+    <div class="qty-row">
+      <div>
+        <div class="qty-label">Vé người lớn</div>
+        <div class="qty-sub">Từ 6 tuổi trở lên</div>
+      </div>
+      <div class="qty-controls">
+        <button class="qty-btn" id="qty-minus" onclick="changeQty(-1)" disabled>−</button>
+        <div class="qty-num" id="qty-display">1</div>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="section-title" style="margin-top:20px;">Thanh toán</div>
+    <div class="pay-section">
+      <div class="pay-group" id="pay-group"><!-- JS renders --></div>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div id="empty-state" class="empty-hint" style="margin-top:32px;">
+    <div class="empty-hint-icon">🗺️</div>
+    <div class="empty-hint-text">Chọn ga xuất phát và điểm đến<br>để xem chuyến đi và giá vé</div>
+  </div>
+</main>
+
+<!-- STICKY BUY BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sticky-bar-inner">
+    <div class="sticky-total">
+      <div class="sticky-total-amt" id="sticky-amt">0 ₫</div>
+      <div class="sticky-total-label" id="sticky-detail">0 vé · chọn ga</div>
+    </div>
+    <button class="buy-btn" onclick="buyTicket()">Mua vé →</button>
+  </div>
+</div>
+
+<!-- STATION PICKER SHEET -->
+<div class="sheet-overlay" id="sheet-overlay" onclick="closeSheet(event)">
+  <div class="sheet" id="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <div class="sheet-title" id="sheet-title">Chọn ga xuất phát</div>
+      <div class="sheet-search">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input id="sheet-search-input" placeholder="Tìm ga..." oninput="filterSheet(this.value)" autocomplete="off">
+      </div>
+    </div>
+    <div class="station-scroll" id="station-scroll"><!-- JS renders --></div>
+  </div>
+</div>
+
+<!-- SUCCESS SHEET -->
+<div class="success-sheet" id="success-sheet">
+  <div class="success-header-bar">
+    <div class="success-checkmark">✓</div>
+    <div class="success-title">Thanh toán thành công!</div>
+    <div class="success-sub">Vé của bạn đã sẵn sàng</div>
+  </div>
+  <div class="ticket-wrap">
+    <div class="ticket-paper">
+      <div class="tkt-head">
+        <div class="tkt-head-top">
+          <span class="tkt-brand">Metro TP.HCM · Tuyến 1</span>
+          <span class="tkt-valid-chip">Còn hiệu lực</span>
+        </div>
+        <div class="tkt-route" id="tkt-route">—</div>
+        <div class="tkt-route-via" id="tkt-via">—</div>
+      </div>
+      <div class="tkt-body">
+        <div class="tkt-row"><span class="tkt-key">Mã vé</span><span class="tkt-val" id="tkt-id">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Ga xuất phát</span><span class="tkt-val" id="tkt-from">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Ga đến</span><span class="tkt-val" id="tkt-to">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Loại vé</span><span class="tkt-val" id="tkt-type">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Số lượng</span><span class="tkt-val" id="tkt-qty">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Tổng tiền</span><span class="tkt-val" id="tkt-total" style="color:var(--green);">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Thanh toán</span><span class="tkt-val" id="tkt-pay">—</span></div>
+        <div class="tkt-row"><span class="tkt-key">Hiệu lực</span><span class="tkt-val" id="tkt-valid">—</span></div>
+      </div>
+      <div class="tkt-barcode-area">
+        <div class="tkt-barcode" id="tkt-barcode"></div>
+        <div class="tkt-barcode-num" id="tkt-barcode-num">—</div>
+      </div>
+    </div>
+    <div class="tkt-note">
+      📌 Vé có hiệu lực 90 phút kể từ thời điểm mua · Xuất trình vé khi lên tàu · Không hoàn vé sau khi mua
+    </div>
+    <button class="done-btn" onclick="closeDone()">Xong</button>
+  </div>
+</div>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────
+const STATIONS = [
+  { id:1,  vi:'Bến Thành',             en:'Ben Thanh',          zone:1, order:0  },
+  { id:2,  vi:'Nhà hát TP',            en:'Opera House',        zone:1, order:1  },
+  { id:3,  vi:'Ba Son',                en:'Ba Son',             zone:2, order:2  },
+  { id:4,  vi:'Văn Thánh',             en:'Van Thanh',          zone:2, order:3  },
+  { id:5,  vi:'Tân Cảng',              en:'Tan Cang',           zone:3, order:4  },
+  { id:6,  vi:'Thảo Điền',             en:'Thao Dien',          zone:3, order:5  },
+  { id:7,  vi:'An Phú',                en:'An Phu',             zone:3, order:6  },
+  { id:8,  vi:'Rạch Chiếc',            en:'Rach Chiec',         zone:4, order:7  },
+  { id:9,  vi:'Phước Long',            en:'Phuoc Long',         zone:4, order:8  },
+  { id:10, vi:'Bình Thái',             en:'Binh Thai',          zone:4, order:9  },
+  { id:11, vi:'Thủ Đức',               en:'Thu Duc',            zone:5, order:10 },
+  { id:12, vi:'Khu Công nghệ Cao',     en:'Hi-Tech Park (SHTP)',zone:5, order:11 },
+  { id:13, vi:'Suối Tiên',             en:'Suoi Tien',          zone:6, order:12 },
+];
+const FARE_TABLE = { 1:8000, 2:10000, 3:12000, 4:14000, 5:16000, 6:18000 };
+function getFare(a, b) {
+  const diff = Math.abs(a.order - b.order);
+  if (diff === 0) return 0;
+  if (diff <= 1) return FARE_TABLE[1];
+  if (diff <= 3) return FARE_TABLE[2];
+  if (diff <= 5) return FARE_TABLE[3];
+  if (diff <= 7) return FARE_TABLE[4];
+  if (diff <= 9) return FARE_TABLE[5];
+  return FARE_TABLE[6];
+}
+function getTravelTime(a, b) {
+  return Math.abs(a.order - b.order) * 3 + 2;
+}
+function getStops(a, b) {
+  return Math.abs(a.order - b.order);
+}
+function fmt(n) { return n.toLocaleString('vi-VN') + ' ₫'; }
+
+// ── STATE ───────────────────────────────────────────────────
+let from = null, to = null;
+let qty = 1, tripType = 'one';
+let payMethod = 'momo';
+let sheetMode = 'from';
+let sheetFilter = '';
+
+// ── HERO LINE MAP ────────────────────────────────────────────
+function renderHeroLine() {
+  const wrap = document.getElementById('hero-line-map');
+  wrap.innerHTML = STATIONS.map((s, i) => {
+    const active = (s === from || s === to);
+    const passed = from && to && s.order >= Math.min(from.order,to.order) && s.order <= Math.max(from.order,to.order);
+    return `
+      ${i > 0 ? `<div class="hero-connector ${(from&&to&&STATIONS[i-1].order>=Math.min(from.order,to.order)&&STATIONS[i-1].order<Math.max(from.order,to.order))?'passed':''}"></div>` : ''}
+      <div class="hero-stop">
+        <div class="hero-stop-dot ${active?'active':''}"></div>
+        <div class="hero-stop-label ${active?'active':''}">${s.vi}</div>
+      </div>`;
+  }).join('');
+}
+renderHeroLine();
+
+// ── SHEET ───────────────────────────────────────────────────
+function openSheet(mode) {
+  sheetMode = mode;
+  sheetFilter = '';
+  document.getElementById('sheet-title').textContent = mode === 'from' ? 'Chọn ga xuất phát' : 'Chọn ga đến';
+  document.getElementById('sheet-search-input').value = '';
+  renderSheetList('');
+  const overlay = document.getElementById('sheet-overlay');
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => {
+    overlay.classList.add('visible');
+    document.getElementById('sheet').classList.add('open');
+  });
+  setTimeout(() => document.getElementById('sheet-search-input').focus(), 350);
+}
+function closeSheet(e) {
+  if (e && e.target !== document.getElementById('sheet-overlay')) return;
+  _closeSheet();
+}
+function _closeSheet() {
+  const overlay = document.getElementById('sheet-overlay');
+  overlay.classList.remove('visible');
+  document.getElementById('sheet').classList.remove('open');
+  setTimeout(() => { overlay.style.display = 'none'; }, 280);
+}
+function filterSheet(v) { sheetFilter = v; renderSheetList(v); }
+function renderSheetList(filter) {
+  const scroll = document.getElementById('station-scroll');
+  const list = STATIONS.filter(s =>
+    !filter || s.vi.toLowerCase().includes(filter.toLowerCase()) ||
+    s.en.toLowerCase().includes(filter.toLowerCase())
+  );
+  scroll.innerHTML = (filter ? '' : '<div class="station-group-label">Tuyến 1 · 13 ga</div>') +
+    list.map(s => {
+      const sel = (sheetMode==='from' && from?.id===s.id) || (sheetMode==='to' && to?.id===s.id);
+      return `<div class="station-row ${sel?'stn-selected':''}" onclick="selectStation(${s.id})">
+        <div class="stn-dot-wrap"><div class="stn-dot"></div></div>
+        <div class="stn-info">
+          <div class="stn-name">${s.vi}</div>
+          <div class="stn-name-en">${s.en}</div>
+        </div>
+        <div class="stn-badge">Z${s.zone}</div>
+      </div>`;
+    }).join('');
+}
+function selectStation(id) {
+  const s = STATIONS.find(x => x.id === id);
+  if (sheetMode === 'from') {
+    from = s;
+    document.getElementById('from-display').textContent = s.vi;
+    document.getElementById('from-display').classList.remove('placeholder');
+    if (to && to.id === from.id) { to = null; resetToDisplay(); }
+  } else {
+    to = s;
+    document.getElementById('to-display').textContent = s.vi;
+    document.getElementById('to-display').classList.remove('placeholder');
+    if (from && from.id === to.id) { from = null; resetFromDisplay(); }
+  }
+  renderHeroLine();
+  _closeSheet();
+  if (from && to) planJourney();
+}
+function resetFromDisplay() {
+  from = null;
+  const el = document.getElementById('from-display');
+  el.textContent = 'Chọn ga xuất phát'; el.classList.add('placeholder');
+}
+function resetToDisplay() {
+  to = null;
+  const el = document.getElementById('to-display');
+  el.textContent = 'Chọn ga đến'; el.classList.add('placeholder');
+}
+
+// ── SWAP ────────────────────────────────────────────────────
+function swapStations() {
+  [from, to] = [to, from];
+  if (from) { document.getElementById('from-display').textContent = from.vi; document.getElementById('from-display').classList.remove('placeholder'); }
+  else resetFromDisplay();
+  if (to) { document.getElementById('to-display').textContent = to.vi; document.getElementById('to-display').classList.remove('placeholder'); }
+  else resetToDisplay();
+  renderHeroLine();
+  if (from && to) planJourney(); else hideResult();
+}
+
+// ── TRIP TYPE ────────────────────────────────────────────────
+function setTripType(type, el) {
+  tripType = type;
+  document.querySelectorAll('.trip-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  if (from && to) planJourney();
+}
+
+// ── JOURNEY PLAN ─────────────────────────────────────────────
+function planJourney() {
+  if (!from || !to) {
+    if (!from) openSheet('from');
+    else openSheet('to');
+    return;
+  }
+  if (from.id === to.id) {
+    alert('Ga xuất phát và ga đến không thể giống nhau.');
+    return;
+  }
+  const baseFare = getFare(from, to);
+  const fare = tripType === 'round' ? baseFare * 2 : baseFare;
+  const mins = getTravelTime(from, to);
+  const stops = getStops(from, to);
+
+  // Order stations in travel direction
+  const ordered = from.order < to.order ? STATIONS.filter(s => s.order >= from.order && s.order <= to.order) : STATIONS.filter(s => s.order >= to.order && s.order <= from.order).reverse();
+
+  const card = document.getElementById('journey-card');
+  card.innerHTML = `
+    <div class="journey-header">
+      <div class="journey-route-text">
+        <div class="journey-route-main">${from.vi} <span style="font-weight:300;opacity:0.7">→</span> ${to.vi}</div>
+        <div class="journey-route-via">Tuyến 1 · Không cần đổi tàu</div>
+      </div>
+      <div class="journey-fare-box">
+        <div class="journey-fare-amt">${(fare/1000).toFixed(0)}K</div>
+        <div class="journey-fare-unit">/ vé · VND</div>
+      </div>
+    </div>
+    <div class="route-spine">
+      ${ordered.map((s, i) => {
+        const isFirst = i === 0;
+        const isLast = i === ordered.length - 1;
+        const isMid = !isFirst && !isLast;
+        if (isMid && ordered.length > 4 && i === 2 && ordered.length > 5) {
+          if (i > 1 && i < ordered.length - 2) return ''; // collapse middles
+        }
+        return `
+          <div class="spine-row">
+            <div class="spine-line-col">
+              <div class="spine-dot ${(isFirst||isLast)?'filled':'mid'}"></div>
+              ${!isLast ? `<div class="spine-vert ${isMid?'dashed':''}"></div>` : ''}
+            </div>
+            <div class="spine-content ${isLast?'last':''}">
+              <div class="spine-station-name ${isMid?'dim':''}">${s.vi}${isMid?'':''}</div>
+              <div class="spine-station-meta">${s.en} · Vùng ${s.zone}</div>
+            </div>
+          </div>`;
+      }).join('')}
+      ${ordered.length > 5 ? `<div style="padding:0 0 12px 34px;font-size:12px;color:var(--gray-400);font-style:italic;">... và ${stops - 2} ga trung gian khác</div>` : ''}
+    </div>
+    <div class="journey-details">
+      <div class="detail-item">
+        <div class="detail-val">${mins}</div>
+        <div class="detail-label">phút</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-val">${stops}</div>
+        <div class="detail-label">ga</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-val">${fmt(fare)}</div>
+        <div class="detail-label">/ vé</div>
+      </div>
+    </div>`;
+
+  renderPayMethods(fare);
+  document.getElementById('journey-result').style.display = 'block';
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('sticky-bar').classList.add('visible');
+  updateStickyBar(fare);
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideResult() {
+  document.getElementById('journey-result').style.display = 'none';
+  document.getElementById('empty-state').style.display = 'block';
+  document.getElementById('sticky-bar').classList.remove('visible');
+}
+
+// ── QTY ─────────────────────────────────────────────────────
+function changeQty(d) {
+  qty = Math.max(1, Math.min(4, qty + d));
+  document.getElementById('qty-display').textContent = qty;
+  document.getElementById('qty-minus').disabled = qty <= 1;
+  if (from && to) {
+    const fare = getFare(from, to) * (tripType === 'round' ? 2 : 1);
+    updateStickyBar(fare);
+  }
+}
+
+// ── PAYMENT METHODS ──────────────────────────────────────────
+const PAY_OPTIONS = [
+  { id:'momo',   label:'MoMo',      desc:'Ví điện tử MoMo', color:'#B0006E' },
+  { id:'vnpay',  label:'VNPay',     desc:'VNPay QR · ATM nội địa', color:'#005BAA' },
+  { id:'zalopay',label:'ZaloPay',   desc:'Ví ZaloPay',       color:'#0068FF' },
+  { id:'card',   label:'VISA/MC',   desc:'Thẻ tín dụng / ghi nợ', color:'#1A1A1A' },
+];
+function renderPayMethods() {
+  document.getElementById('pay-group').innerHTML = PAY_OPTIONS.map(p => `
+    <div class="pay-option" onclick="selectPay('${p.id}')">
+      <div class="pay-radio ${payMethod===p.id?'checked':''}"></div>
+      <div class="pay-logo" style="background:${p.color}">${p.label}</div>
+      <div class="pay-info">
+        <div class="pay-name">${p.label}</div>
+        <div class="pay-desc">${p.desc}</div>
+      </div>
+    </div>`).join('');
+}
+function selectPay(id) {
+  payMethod = id;
+  renderPayMethods();
+}
+
+// ── STICKY BAR ───────────────────────────────────────────────
+function updateStickyBar(farePerTicket) {
+  const total = farePerTicket * qty;
+  document.getElementById('sticky-amt').textContent = fmt(total);
+  document.getElementById('sticky-detail').textContent = `${qty} vé · ${from?.vi} → ${to?.vi}`;
+}
+
+// ── BUY ─────────────────────────────────────────────────────
+function buyTicket() {
+  if (!from || !to) return;
+  const fare = getFare(from, to) * (tripType==='round'?2:1);
+  const total = fare * qty;
+  const now = new Date();
+  const validUntil = new Date(now.getTime() + 90*60000);
+  const ticketId = 'MHC1-' + now.toISOString().slice(2,10).replace(/-/g,'') + '-' + Math.floor(Math.random()*9000+1000);
+  const payNames = { momo:'Ví MoMo', vnpay:'VNPay QR', zalopay:'ZaloPay', card:'Thẻ tín dụng' };
+  const fmtTime = d => d.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}) + ' ' + d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});
+
+  document.getElementById('tkt-route').textContent = `${from.vi} → ${to.vi}`;
+  document.getElementById('tkt-via').textContent = `Tuyến 1 · ${Math.abs(from.order-to.order)} ga · ${getTravelTime(from,to)} phút`;
+  document.getElementById('tkt-id').textContent = ticketId;
+  document.getElementById('tkt-from').textContent = `${from.vi} (Z${from.zone})`;
+  document.getElementById('tkt-to').textContent = `${to.vi} (Z${to.zone})`;
+  document.getElementById('tkt-type').textContent = tripType==='one' ? 'Một chiều' : 'Khứ hồi';
+  document.getElementById('tkt-qty').textContent = qty + ' vé';
+  document.getElementById('tkt-total').textContent = fmt(total);
+  document.getElementById('tkt-pay').textContent = payNames[payMethod];
+  document.getElementById('tkt-valid').textContent = '90 phút · đến ' + fmtTime(validUntil);
+  document.getElementById('tkt-barcode-num').textContent = ticketId;
+
+  document.getElementById('success-sheet').classList.add('open');
+  document.getElementById('success-sheet').scrollTop = 0;
+}
+function closeDone() {
+  document.getElementById('success-sheet').classList.remove('open');
+}
+
+// ── LANG TOGGLE ──────────────────────────────────────────────
+let lang = 'vi';
+function toggleLang() {
+  lang = lang === 'vi' ? 'en' : 'vi';
+  document.querySelector('.header-lang').textContent = lang === 'vi' ? '🇻🇳 VI' : '🇬🇧 EN';
+}
+
+// ── KEYBOARD CLOSE ───────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') _closeSheet();
+});
+</script>
+</body>
+</html>
