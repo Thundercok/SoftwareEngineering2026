@@ -1,4 +1,4 @@
-# Ticket Vendor Machine
+# Ticket Vendor 
 
 SE QT2 Assignment1 HK2 | Software Engineering 2025 |
 Lecturer: Pham Thai Ky Trung | Ton Duc Thang University
@@ -15,9 +15,9 @@ An automated **Ticket Vendor Machine (TVM)** system for the BenThanh Metro (Ho C
 | :-: | -------------------------------------------------- | ---- | ---- |
 | 1 | Requirements Q&A (Excel)                           | Y    | 2    |
 | 2 | Functional / Non-Functional / Domain Requirements  | Y    | 1    |
-| 3 | Use Case Diagram + Descriptions                    |      | 2    |
-| 4 | Activity Diagram (Buy Ticket + System Integration) |      | 2    |
-| 5 | Sequence + State Chart + Class Diagram             |      | 2    |
+| 3 | Use Case Diagram + Descriptions                    | ?    | 1    |
+| 4 | Activity Diagram (Buy Ticket + System Integration) | ?    | 2    |
+| 5 | Sequence + State Chart + Class Diagram             | ?    | 2    |
 | 6 | Wireframe / Mockup (4 screens)                     |      | 1    |
 | 7 | Architecture (MVC) + Deployment Diagram            |      | 1, 2 |
 | 8 | C# + MSSQL Demo                                    |      | 1    |
@@ -30,11 +30,9 @@ An automated **Ticket Vendor Machine (TVM)** system for the BenThanh Metro (Ho C
 | 523c0012 | Huynh Nhat Huy | Update Later | 1  |
 | 523v0002 | Bui Quang Huy  | Update Later | 2  |
 
-
-## Usecases Diagram's link
+## Usecase Diagram's link
 
 https://app.diagrams.net/?src=about#HThundercok%2FSoftwareEngineering2026%2Fmain%2FQT2Assignment1%2Fusecase.drawio#%7B%22pageId%22%3A%22AAIvdWaikjS7hFGzl4Ta%22%7D
-
 
 ## AI Usages
 
