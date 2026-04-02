@@ -38,9 +38,9 @@ https://app.diagrams.net/?src=about#HThundercok%2FSoftwareEngineering2026%2Fmain
 
 Claude: General guide
 
-Gemini:
+Gemini: Tutorials
 
-Copilot
+Copilot:
 
 ## References
 

@@ -1,0 +1,100 @@
+
+Trò chuyện với Gemini
+Bạn đã nói
+tôi muốn thiết kế tiếp tục wireframe này trên figma, hướng dẫn làm từng bước
+Gemini đã nói
+Để chuyển đổi file HTML/Code này sang một bản thiết kế chuyên nghiệp trên Figma, bạn nên thực hiện theo quy trình Atomic Design (Thiết kế nguyên tử). Cách tiếp cận này giúp bạn quản lý các thành phần (components) đồng nhất với code hiện tại.
+
+Dưới đây là hướng dẫn từng bước:
+
+Bước 1: Thiết lập Style Guide (Các "nguyên tử")
+Trước khi vẽ màn hình, hãy thiết lập các thông số kỹ thuật dựa trên biến CSS trong code:
+
+Bảng màu (Color Styles): Tạo Local Styles trong Figma:
+
+Primary (Green): #00843D
+
+Secondary (Blue): #1D4ED8 (màu cho ga đến)
+
+Gray Scales: #F9FAFB (BG), #111827 (Text chính), #9CA3AF (Muted text).
+
+Typography: * Font: Be Vietnam Pro.
+
+Body: 16px.
+
+Small/Label: 11px - 12px (Bold cho tiêu đề mục).
+
+Title: 17px - 20px (Semi-bold/Bold).
+
+Shadows (Hiệu ứng đổ bóng):
+
+Tạo Effect Style Shadow-LG: Y: 12, Blur: 40, Color: rgba(0,0,0,0.12).
+
+Bước 2: Tạo các Component cốt lõi
+Đừng vẽ cả màn hình ngay, hãy tạo các thành phần này trước:
+
+Station Input Field: * Một Frame chứa icon hình tròn (Xanh/Xanh dương), Label (Từ/Đến), và text tên ga.
+
+Sử dụng Auto Layout (Shift + A) để căn giữa theo chiều dọc.
+
+Trip Tab: * Tạo một nút có gạch chân phía dưới (màu xanh khi active).
+
+Search Button: * Nút màu xanh, bo góc 12px, icon kính lúp và chữ "Xem chuyến đi".
+
+Route Spine (Sơ đồ tuyến):
+
+Vẽ một chấm tròn rỗng và một chấm tròn đặc.
+
+Nối bằng một đường Line (2px). Sử dụng Dash (đứt đoạn) cho các ga trung gian.
+
+Bước 3: Dựng Layout Wireframe (Trang chủ)
+Frame thiết bị: Chọn Frame iPhone 13/14 hoặc iPhone 15 Pro (chiều rộng khoảng 390-430px).
+
+Header: Đặt logo bên trái, nút ngôn ngữ bên phải. Cao 56px.
+
+Hero Section: * Vẽ một hình chữ nhật xanh lá cây.
+
+Dùng công cụ Pen hoặc Ellipse để tạo đường cong lõm xuống ở đáy (giống hiệu ứng ::after trong CSS).
+
+The Planner Card (Thẻ đặt vé): * Đây là phần quan trọng nhất. Đặt chồng lên phần Hero.
+
+Gồm: Input đi, Nút Swap (⇅), Input đến, Tabs, và Nút Search.
+
+Bo góc (Corner Radius): 14px.
+
+Bước 4: Thiết kế Ticket & Success State (Màn hình kết quả)
+Để làm phần vé (Ticket) trông "thật" hơn như trong code:
+
+Hiệu ứng răng cưa: * Dùng hình tròn nhỏ (11px radius) đục lỗ vào hai bên cạnh của thẻ vé bằng tính năng Subtract Selection.
+
+Mã vạch (Barcode): * Trong Figma, bạn có thể cài Plugin "Barcode Generator" hoặc vẽ các đường Line với độ dày khác nhau (2px, 4px, 1px) đặt sát nhau.
+
+Dashed Line: Vẽ đường kẻ ngang phân tách giữa thông tin vé và mã vạch, chọn kiểu nét đứt (Dash: 4, Gap: 4).
+
+Bước 5: Tạo Station Picker (Bottom Sheet)
+Màn hình này hiện ra khi người dùng chọn ga:
+
+Overlay: Tạo một Frame phủ màu đen mờ rgba(0,0,0,0.4).
+
+Sheet: Một Frame trắng bo góc 20px ở phía trên.
+
+Search Bar: Bo góc 12px, màu xám nhạt (#F3F4F6).
+
+List Item: Tạo các dòng tên ga với icon vùng (Zone - ví dụ Z1, Z2).
+
+Các mẹo để Figma giống Code 100%
+Auto Layout là chìa khóa: Sử dụng Auto Layout cho mọi thứ (từ danh sách ga đến các nút). Điều này giúp bạn điều chỉnh khoảng cách (Gap) giống hệt các giá trị padding: 16px hay gap: 14px trong CSS.
+
+Icon: Bạn có thể dùng bộ icon Lucide hoặc Google Material Symbols vì chúng có nét tương đồng với icon trong code của bạn.
+
+Plugin gợi ý: * Html.to.design: Bạn có thể thử copy đoạn code này, chạy một server local và dùng plugin này để "chụp" thẳng vào Figma (tuy nhiên tự vẽ lại sẽ giúp bạn kiểm soát component tốt hơn).
+
+Iconify: Để lấy các icon mũi tên, đồng hồ nhanh chóng.
+
+Bước tiếp theo: Bạn có muốn tôi tập trung hướng dẫn kỹ hơn về cách dựng Auto Layout cho phần "Lộ trình chuyến đi" (Route Spine) không? Đây là phần khó nhất trong wireframe này.
+
+
+
+
+
+
