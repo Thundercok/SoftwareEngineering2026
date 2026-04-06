@@ -1,0 +1,180 @@
+@{
+Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HCMC Metro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: #e8edf2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            width: 480px;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        /* ── Map background ── */
+        .map-bg {
+            position: absolute;
+            inset: 0;
+            background: #dce8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Placeholder map — swap with <img src="~/images/metro-map.png"> when ready */
+        .map-bg svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.55;
+        }
+
+        /* ── Hamburger top-left ── */
+        .menu-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            background: #1B2A4A;
+            border-radius: 2px;
+        }
+
+        /* ── Center logo ── */
+        .logo-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 60px;
+            margin: 0 auto 12px;
+        }
+
+        .logo-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1B2A4A;
+            letter-spacing: 1px;
+        }
+
+        /* ── Language toggle ── */
+        .lang-toggle {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 48px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1B2A4A;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            background: none;
+            font-family: inherit;
+            transition: .15s;
+        }
+        .lang-btn.active { color: #1565C0; border-bottom: 2px solid #1565C0; }
+        .lang-btn:hover  { color: #1565C0; }
+
+        /* ── Get started button ── */
+        .btn-start {
+            position: absolute;
+            bottom: 32px;
+            left: 24px;
+            right: 24px;
+            background: #D0021B;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            z-index: 10;
+            transition: .15s;
+        }
+        .btn-start:hover { background: #b00118; }
+    </style>
+</head>
+<body>
+<div class="screen">
+
+    <!-- Map background -->
+    <div class="map-bg">
+        <img src="/images/homebackground.webp" style="opacity:0.2%;width:100%;height:100%;object-fit:cover">
+    </div>
+
+    <!-- Hamburger -->
+    <div class="menu-btn">
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+        <img src="/images/logo.png" style="width:80px;height:auto">
+    </div>
+
+    <!-- Language toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn"        onclick="setLang('vi')">VI</button>
+    </div>
+
+    <!-- Get started -->
+    <a href="/Ticket/Buy" class="btn-start">Get started</a>
+
+</div>
+
+<script>
+    function setLang(l) {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
+</body>
+</html>
