@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HCMCMetroKioskV1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e71ab83c4c1cd0e8e92f5bfe2a2fe33395f1f8ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c74040abc793524b61046506630fdb66b0e9010")]
 [assembly: System.Reflection.AssemblyProductAttribute("HCMCMetroKioskV1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HCMCMetroKioskV1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

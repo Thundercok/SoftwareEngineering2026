@@ -1,0 +1,380 @@
+﻿@model List<HCMCMetroKioskV1.Models.Station>
+@using System.Linq
+
+@{
+Layout = "~/Views/Shared/_Layout.cshtml";
+ViewData["Title"] = "Buy Ticket";
+}
+
+<style>
+    /* ── TỔNG THỂ KIOSK ── */
+    .buy-container {
+        max-width: 900px; margin: 20px auto 40px auto; padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #1C1C1E; font-size: 18px;
+    }
+
+    /* ── GLOBAL SLEEK TIMER BAR (Tối giản hoàn toàn) ── */
+    .global-timer-container {
+        background: #fff; border: 1px solid #E5E5EA; padding: 8px 16px;
+        border-radius: 20px; max-width: 250px; margin: 0 auto 20px auto;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .timer-track { width: 100%; height: 6px; background: #F2F2F7; border-radius: 10px; overflow: hidden; }
+    .timer-fill { height: 100%; background: #0082FB; width: 100%; transition: width 1s linear, background-color 0.3s; }
+    .timer-fill.warning { background: #D0021B; }
+
+    /* ── BẢN ĐỒ METRO ── */
+    .map-section {
+        background: #fff; border-radius: 12px; border: 2px solid #E5E5EA;
+        padding: 10px; margin-bottom: 20px; overflow-x: auto;
+    }
+    .map-section svg { width: 100%; min-width: 800px; height: 320px; display: block; }
+    .station-node { cursor: pointer; }
+    .station-node circle { fill: #fff; stroke: #D0021B; stroke-width: 3; r: 6px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .station-node text { font-size: 14px; fill: #666; font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .station-node.origin circle { fill: #D0021B; stroke: #fff; stroke-width: 2; r: 8px; }
+    .station-node.origin text { font-weight: 800; fill: #D0021B; font-size: 16px; }
+    .station-node.active circle { fill: #fff; stroke: #0082FB; stroke-width: 6; r: 12px; }
+    .station-node.active text { fill: #0082FB; font-weight: 900; font-size: 22px; text-shadow: 0 2px 8px rgba(0, 130, 251, 0.2); }
+
+    /* ── VỊ TRÍ HIỆN TẠI ── */
+    .current-station-wrap { text-align: center; margin-bottom: 30px; color: #444; font-size: 22px; font-weight: 500; }
+    .current-station-badge { background-color: #D0021B; color: white; padding: 10px 24px; border-radius: 12px; font-weight: 800; display: inline-block; margin-left: 10px; box-shadow: 0 4px 10px rgba(208, 2, 27, 0.2); }
+    .main-title { text-align: center; font-size: 36px; font-weight: 900; margin-bottom: 30px; }
+
+    /* ── STATION CHIPS ── */
+    .chip-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 35px; }
+    .chip { background-color: white; color: #444; border: 1.5px solid #C7C7CC; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .chip.active { background-color: #0082FB; color: white; border-color: #0082FB; box-shadow: 0 5px 15px rgba(0, 130, 251, 0.3); }
+
+    /* ── FORM ROWS & TOGGLES ── */
+    .form-row { display: flex; align-items: center; margin-bottom: 25px; }
+    .form-label { width: 140px; color: #8E8E93; font-weight: 700; font-size: 20px; }
+    .toggle-group { flex: 1; display: flex; background-color: #F2F2F7; border-radius: 12px; padding: 6px; gap: 6px; }
+    .toggle-btn { flex: 1; text-align: center; padding: 14px 0; border-radius: 10px; font-size: 18px; font-weight: 700; color: #666; cursor: pointer; border: none; background: transparent; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .toggle-btn.active { background-color: white; color: #1C1C1E; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+    .svg-icon { width: 22px; height: 22px; stroke-width: 2.5; fill: none; stroke: currentColor; }
+    .toggle-btn.active .svg-icon { stroke: #0082FB; }
+
+    /* ── PAYMENT INFO BOX ── */
+    .payment-box { background: #F9F9F9; border: 2px solid #E5E5EA; border-radius: 12px; padding: 30px; margin-top: 30px; }
+    .payment-title { text-align: center; font-size: 28px; font-weight: 900; margin-bottom: 20px; }
+    .payment-details { font-size: 20px; line-height: 2.2; }
+    .total-line { font-weight: 900; font-size: 32px; color: #0082FB; margin-top: 15px; border-top: 2px dashed #D1D1D6; padding-top: 15px;}
+    .legal-text { font-size: 13px; color: #8E8E93; text-align: center; margin-top: 25px; }
+    .tos-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; font-size: 20px; font-weight: 600; cursor: pointer; }
+    .tos-row input { width: 24px; height: 24px; cursor: pointer; }
+    .pay-btn { width: 100%; background-color: #0082FB; color: white; border: none; padding: 24px; border-radius: 12px; font-size: 26px; font-weight: 800; margin-top: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(0, 130, 251, 0.2); }
+    .pay-btn:disabled { background-color: #D1D1D6; box-shadow: none; cursor: not-allowed; color: #8E8E93; }
+
+    /* ── IDLE MODAL ── */
+    .idle-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(28, 28, 30, 0.6); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 10000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .idle-modal { background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 24px 48px rgba(0,0,0,0.2); text-align: center; max-width: 420px; }
+    .idle-modal h2 { font-size: 28px; font-weight: 900; margin-bottom: 12px; color: #D0021B; }
+    .idle-modal p { font-size: 18px; margin-bottom: 30px; color: #666; font-weight: 500; }
+    .idle-modal .countdown-number { font-size: 24px; font-weight: 900; color: #1C1C1E; }
+    .idle-btn { background: #1C1C1E; color: white; border: none; padding: 20px 0; width: 100%; font-size: 20px; font-weight: 800; border-radius: 14px; cursor: pointer; transition: 0.2s; }
+</style>
+
+<div class="idle-overlay" id="idleOverlay">
+    <div class="idle-modal">
+        <h2>STILL THERE?</h2>
+        <p>Returning to home screen in <span class="countdown-number" id="idleCountdown">5</span>s</p>
+        <button class="idle-btn" onclick="userIsActive()">YES, I AM HERE</button>
+    </div>
+</div>
+
+<div class="buy-container">
+
+    <div class="global-timer-container">
+        <div class="timer-track">
+            <div class="timer-fill" id="timeoutBar"></div>
+        </div>
+    </div>
+
+    <div class="map-section">
+        <svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" id="metroMap">
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#D0021B" stroke-width="8" stroke-linecap="round"/>
+            <line x1="40" y1="260" x2="760" y2="260" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+
+            @{
+            double startX = 40;
+            double endX = 760;
+            int totalNodes = Model != null ? Model.Count : 1;
+            double stepX = totalNodes > 1 ? (endX - startX) / (totalNodes - 1) : 0;
+            int fixedY = 260;
+
+            if (Model != null && Model.Count > 0)
+            {
+            int originCx = (int)Math.Round(startX);
+            <g style="pointer-events: none;">
+                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="2s" repeatCount="indefinite"/>
+                <rect x="@(originCx - 45)" y="@(fixedY - 70)" width="90" height="24" rx="12" fill="#1C1C1E"/>
+                <path d="M @(originCx - 6) @(fixedY - 47) L @(originCx + 6) @(fixedY - 47) L @originCx @(fixedY - 38) Z" fill="#1C1C1E"/>
+                <text x="@originCx" y="@(fixedY - 54)" font-size="10" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0.5">YOU ARE HERE</text>
+            </g>
+            }
+
+            if (Model != null)
+            {
+            for (int i = 0; i < Model.Count; i++)
+            {
+            var s  = Model[i];
+            int cx = (int)Math.Round(startX + i * stepX);
+            bool isOrigin = i == 0;
+            <g class="station-node @(isOrigin ? "origin" : "")"
+               data-id="@s.Id"
+               data-name="@s.NameEn"
+               onclick="@(isOrigin ? "" : $"selectStation(this, {s.Id}, '{s.NameEn}')")">
+                <circle cx="@cx" cy="@fixedY"/>
+                <text x="@(cx + 8)" y="@(fixedY - 16)"
+                      text-anchor="start"
+                      transform="rotate(-45, @(cx + 8), @(fixedY - 16))">@s.NameEn</text>
+            </g>
+            }
+            }
+            }
+        </svg>
+    </div>
+
+    <div class="current-station-wrap">
+        You are at: <span class="current-station-badge">Ben Thanh</span>
+    </div>
+
+    <div class="form-section">
+        <div class="main-title">Where are you going?</div>
+
+        <div class="chip-grid">
+            @if (Model != null && Model.Count > 1)
+            {
+            for (int i = 1; i < Model.Count; i++)
+            {
+            var s = Model[i];
+            <button type="button" class="chip" data-id="@s.Id" data-name="@s.NameEn" onclick="selectStation(this, @s.Id, '@s.NameEn')">@s.NameEn</button>
+            }
+            }
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Trip:</div>
+            <div class="toggle-group">
+                <button type="button" class="toggle-btn active" onclick="setTripType(this, false)">
+                    <svg class="svg-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    One-way
+                </button>
+                <button type="button" class="toggle-btn" onclick="setTripType(this, true)">
+                    <svg class="svg-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                    Return
+                </button>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Quantity:</div>
+            <div class="toggle-group">
+                @for (int i = 1; i <= 5; i++)
+                {
+                <button type="button" class="toggle-btn @(i == 1 ? "active" : "")" onclick="setAmount(this, @i)">@i</button>
+                }
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">Payment:</div>
+            <div class="toggle-group">
+                <button type="button" class="toggle-btn" onclick="setPayment(this, 'VietQR')">
+                    <svg class="svg-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+                    </svg> VietQR
+                </button>
+                <button type="button" class="toggle-btn" onclick="setPayment(this, 'CreditCard')">
+                    <svg class="svg-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg> Credit Card
+                </button>
+            </div>
+        </div>
+
+        <div class="payment-box">
+            <div class="payment-title">Payment Info</div>
+            <div class="payment-details">
+                <div style="display:flex; justify-content:space-between;">
+                    <span>Route: Ben Thanh → <span id="lblDest">...</span></span>
+                    <span id="lblBaseFare">0 ₫</span>
+                </div>
+                <div style="display:none; justify-content:space-between;" id="roundTripRow">
+                    <span>Return trip</span>
+                    <span id="lblRoundFare">0 ₫</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span>Payment:</span>
+                    <span id="lblPaymentMethod">...</span>
+                </div>
+                <div class="total-line" style="display:flex; justify-content:space-between;">
+                    <span>TOTAL:</span>
+                    <span id="lblTotal">0 ₫</span>
+                </div>
+            </div>
+
+            <div class="legal-text">
+                *Terms and conditions apply for HCMC Metro passengers.
+            </div>
+
+            <label class="tos-row">
+                <input type="checkbox" id="tosCheck" onchange="validateForm()">
+                <span>I have checked the information and agree to the terms.</span>
+            </label>
+
+            <form method="post" action="/Ticket/Confirm" id="buyForm">
+                <input type="hidden" name="toStationId"   id="toStationId"/>
+                <input type="hidden" name="paymentMethod" id="paymentMethodInput" value=""/>
+                <button type="submit" class="pay-btn" id="payBtn" disabled>
+                    Select destination
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    // --- KIOSK TIMEOUT LOGIC ---
+    const IDLE_TIME_LIMIT = 60;
+    const WARNING_TIME = 5;
+    let timeRemaining = IDLE_TIME_LIMIT;
+    let timerInterval = null;
+
+    function resetKioskTimer() {
+        timeRemaining = IDLE_TIME_LIMIT;
+        document.getElementById('timeoutBar').style.width = '100%';
+        document.getElementById('timeoutBar').classList.remove('warning');
+        document.getElementById('idleOverlay').style.display = 'none';
+
+        if (timerInterval) clearInterval(timerInterval);
+
+        timerInterval = setInterval(() => {
+            timeRemaining--;
+            let percentage = (timeRemaining / IDLE_TIME_LIMIT) * 100;
+            let bar = document.getElementById('timeoutBar');
+
+            bar.style.width = percentage + '%';
+
+            if (timeRemaining <= WARNING_TIME && timeRemaining > 0) {
+                bar.classList.add('warning');
+                document.getElementById('idleOverlay').style.display = 'flex';
+                document.getElementById('idleCountdown').textContent = timeRemaining;
+            } else if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                window.location.href = '/';
+            }
+        }, 1000);
+    }
+
+    function userIsActive() {
+        resetKioskTimer();
+    }
+
+    ['click', 'touchstart', 'mousemove'].forEach(evt =>
+        document.addEventListener(evt, () => {
+            if (timeRemaining > WARNING_TIME) resetKioskTimer();
+        }, { passive: true })
+    );
+
+    resetKioskTimer();
+
+    // --- TICKET DB LOGIC ---
+    // Khởi tạo state.payment là null để bắt người dùng phải chọn
+    let state = { destId: null, destName: null, basePrice: 0, isRoundTrip: false, amount: 1, payment: null };
+
+    function selectStation(el, id, name) {
+        document.querySelectorAll('.station-node, .chip').forEach(e => e.classList.remove('active'));
+        document.querySelectorAll(`[data-id="${id}"]`).forEach(e => e.classList.add('active'));
+
+        state.destId   = id;
+        state.destName = name;
+        document.getElementById('toStationId').value = id;
+        document.getElementById('lblDest').textContent = name;
+
+        // Fetch giá vé từ C# Controller
+        fetch(`/Ticket/GetFare?fromId=1&toId=${id}`)
+            .then(r => r.json())
+            .then(d => {
+                state.basePrice = d.nonCashPrice;
+                updateBill();
+                validateForm();
+            });
+    }
+
+    function setTripType(el, isRound) {
+        el.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        state.isRoundTrip = isRound;
+        document.getElementById('roundTripRow').style.display = isRound ? 'flex' : 'none';
+        updateBill();
+    }
+
+    function setAmount(el, val) {
+        el.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+        state.amount = val;
+        updateBill();
+    }
+
+    function setPayment(el, method) {
+        el.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+
+        state.payment = method;
+        document.getElementById('paymentMethodInput').value = method;
+
+        let displayMethod = method === 'VietQR' ? 'VietQR' : 'Credit Card';
+        document.getElementById('lblPaymentMethod').textContent = displayMethod;
+
+        validateForm();
+    }
+
+    function updateBill() {
+        if (!state.destId) return;
+        const base  = state.basePrice * state.amount;
+        const round = state.isRoundTrip ? base : 0;
+        const total = base + round;
+
+        document.getElementById('lblBaseFare').textContent  = base.toLocaleString('vi-VN')  + ' ₫';
+        document.getElementById('lblRoundFare').textContent = round.toLocaleString('vi-VN') + ' ₫';
+        document.getElementById('lblTotal').textContent     = total.toLocaleString('vi-VN') + ' ₫';
+    }
+
+    function validateForm() {
+        const btn = document.getElementById('payBtn');
+        const tosChecked = document.getElementById('tosCheck').checked;
+
+        if (!state.destId) {
+            btn.innerHTML = "Select destination";
+            btn.disabled = true;
+            return;
+        }
+
+        if (!state.payment) {
+            btn.innerHTML = "Select payment method";
+            btn.disabled = true;
+            return;
+        }
+
+        if (!tosChecked) {
+            btn.innerHTML = "Accept terms to continue";
+            btn.disabled = true;
+            return;
+        }
+
+        let displayMethod = state.payment === 'VietQR' ? 'VietQR' : 'Credit Card';
+        btn.innerHTML = `Confirm & Pay &mdash; ${displayMethod}`;
+        btn.disabled = false;
+    }
+
+    // Gọi hàm kiểm tra ngay khi load trang
+    validateForm();
+</script>
+}

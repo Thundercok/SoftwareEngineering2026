@@ -10,10 +10,10 @@ public enum TicketType
 
 public enum PaymentMethod
 {
+    VietQR,
     CreditCard,
     MoMo,
     VNPay,
-    ZaloPay
 }
 
 public enum TicketStatus
@@ -30,6 +30,9 @@ public class Ticket
     public required string TicketCode { get; set; }       // e.g. TKT-20250406-0001
 
     public TicketType Type { get; set; } = TicketType.SingleTrip;
+    
+    public bool IsReturn { get; set; } = false;
+    public int Quantity { get; set; } = 1;
 
     // Single trip fields (nullable for day/month passes)
     public int? FromStationId { get; set; }

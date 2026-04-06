@@ -1,0 +1,165 @@
+﻿@model HCMCMetroKioskV1.Models.Ticket
+@{
+    Layout = null; // Chiếm toàn màn hình Kiosk
+    ViewData["Title"] = "Thanh toán VietQR";
+    var totalAmount = Model.Price * (Model.IsReturn ? 2 : 1) * Model.Quantity;
+    int expireSeconds = 180; // 3 phút hiệu lực cho mã QR
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HCMC Metro - Payment</title>
+    <style>
+        :root {
+            --metro-blue: #0082FB;
+            --metro-red: #D0021B;
+            --kiosk-gray: #F2F2F7;
+            --paper: #FFFFFF;
+        }
+
+        body { 
+            background-color: #8B7D7B; 
+            margin: 0; padding: 0; 
+            display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; font-family: -apple-system, sans-serif; 
+        }
+
+        .kiosk-screen {
+            width: 500px; height: 95vh;
+            background: #FFF; display: flex; flex-direction: column;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5); border-radius: 12px; overflow: hidden;
+        }
+
+        /* Nav Bar */
+        .kiosk-nav { padding: 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #EEE; }
+        .kiosk-logo { height: 40px; }
+
+        /* Countdown Bar (Đồng bộ với trang Buy) */
+        .timer-track { width: 100%; height: 6px; background: #F2F2F7; }
+        .timer-fill { height: 100%; background: var(--metro-blue); width: 100%; transition: width 1s linear; }
+        .timer-fill.warning { background: var(--metro-red); }
+
+        .content { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center; }
+        .pay-title { font-size: 32px; font-weight: 900; margin: 10px 0; }
+        .pay-price { font-size: 56px; font-weight: 900; color: var(--metro-blue); margin-bottom: 10px; }
+        .countdown-text { font-size: 18px; font-weight: 700; color: #8E8E93; margin-bottom: 20px; }
+
+        .qr-box {
+            padding: 15px; border: 2px solid var(--kiosk-gray); border-radius: 24px;
+            background: #FFF; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 25px;
+        }
+        .qr-box img { width: 240px; height: 240px; display: block; }
+
+        /* Vé Răng Cưa (Thiết kế Zig-zag) */
+        .metro-ticket {
+            width: 90%; background: var(--paper); padding: 30px 25px;
+            position: relative; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.08)); margin-bottom: 20px;
+        }
+        .metro-ticket::before, .metro-ticket::after {
+            content: ""; position: absolute; left: 0; width: 100%; height: 12px;
+            background-size: 16px 16px; background-repeat: repeat-x;
+        }
+        .metro-ticket::before {
+            top: -12px; background-image: linear-gradient(45deg, var(--paper) 25%, transparent 25%), linear-gradient(-45deg, var(--paper) 25%, transparent 25%);
+            background-position: left bottom;
+        }
+        .metro-ticket::after {
+            bottom: -12px; background-image: linear-gradient(135deg, var(--paper) 25%, transparent 25%), linear-gradient(-135deg, var(--paper) 25%, transparent 25%);
+            background-position: left top;
+        }
+
+        .ticket-head { border-bottom: 1px dashed #CCC; padding-bottom: 10px; margin-bottom: 15px; }
+        .ticket-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 16px; }
+        .ticket-total { margin-top: 15px; padding-top: 10px; border-top: 2px solid #000; font-size: 24px; font-weight: 900; }
+
+        .footer { padding: 0 25px 25px 25px; }
+        .btn-back {
+            width: 100%; padding: 22px; background: #333; color: #FFF;
+            border: none; border-radius: 18px; font-size: 22px; font-weight: 800; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="kiosk-screen">
+        <nav class="kiosk-nav">
+            <div style="font-size: 28px;">☰</div>
+            <img src="~/images/logo.png" class="kiosk-logo" />
+            <div style="font-size: 24px;">🇬🇧</div>
+        </nav>
+
+        <div class="timer-track">
+            <div class="timer-fill" id="countdownBar"></div>
+        </div>
+
+        <div class="content">
+            <div class="pay-title">Quét mã để thanh toán</div>
+            <div class="pay-price">@totalAmount.ToString("N0")₫</div>
+            <div class="countdown-text">Mã QR hết hạn sau: <span id="timeDisplay">03:00</span></div>
+
+            <img src="~/images/vietqr.png" style="width: 140px; margin-bottom: 15px;" />
+
+            <div class="qr-box">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=@Model.BarcodeData" />
+            </div>
+
+            <div class="metro-ticket">
+                <div class="ticket-head">
+                    <h3 style="margin:0;">@Model.MachineId</h3>
+                    <small>Mã đơn: @Model.TicketCode</small>
+                </div>
+                <div class="ticket-row"><span>Từ:</span><span>@(Model.FromStation?.NameEn ?? "Ben Thanh")</span></div>
+                <div class="ticket-row"><span>Đến:</span><span>@(Model.ToStation?.NameEn ?? "Phuoc Long")</span></div>
+                <div class="ticket-row"><span>Loại:</span><span>@(Model.IsReturn ? "Khứ hồi" : "Một chiều")</span></div>
+                <div class="ticket-row ticket-total"><span>TỔNG CỘNG:</span><span>@totalAmount.ToString("N0")₫</span></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn-back" onclick="window.history.back()">HỦY & QUAY LẠI</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. LOGIC ĐẾM NGƯỢC ---
+        const TOTAL_TIME = @expireSeconds;
+        let timeLeft = TOTAL_TIME;
+        const bar = document.getElementById('countdownBar');
+        const display = document.getElementById('timeDisplay');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+            display.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            
+            let percent = (timeLeft / TOTAL_TIME) * 100;
+            bar.style.width = percent + '%';
+
+            if (timeLeft <= 30) bar.classList.add('warning');
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                alert("Giao dịch hết hạn!");
+                window.location.href = '/Ticket/Buy';
+            }
+        }, 1000);
+
+        // --- 2. LOGIC POLLING (KIỂM TRA THANH TOÁN) ---
+        // Cứ mỗi 3 giây sẽ hỏi Server xem vé này đã "Paid" chưa
+        const checkPayment = setInterval(() => {
+            fetch(`/Ticket/CheckStatus?ticketCode=@Model.TicketCode`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "Paid") {
+                        clearInterval(timer);
+                        clearInterval(checkPayment);
+                        window.location.href = '/Ticket/Success?code=@Model.TicketCode';
+                    }
+                });
+        }, 3000);
+    </script>
+</body>
+</html>
