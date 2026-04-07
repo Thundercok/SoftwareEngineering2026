@@ -1,0 +1,194 @@
+﻿@model HCMCMetroKioskV1.Models.Ticket
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Dùng chung Layout 900px cho đồng bộ
+    ViewData["Title"] = "Payment Success";
+    var totalAmount = Model.Price * (Model.IsReturn ? 2 : 1) * Model.Quantity;
+}
+
+<style>
+    /* ── TỔNG THỂ ── */
+    .success-container {
+        max-width: 900px; margin: 0 auto; padding: 30px 20px;
+        display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+
+    /* ── SUCCESS HEADER ── */
+    .success-header {
+        margin-bottom: 30px;
+        animation: fadeInUp 0.6s ease-out;
+    }
+    .check-circle {
+        width: 100px; height: 100px; background: #34C759;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 20px; box-shadow: 0 10px 25px rgba(52, 199, 89, 0.3);
+    }
+    .check-circle svg { width: 50px; height: 50px; stroke: white; stroke-width: 4; fill: none; }
+    .success-title { font-size: 42px; font-weight: 900; color: #1C1C1E; margin-bottom: 8px; }
+    .success-subtitle { font-size: 18px; color: #8E8E93; font-weight: 600; }
+
+    /* ── TẤM VÉ RĂNG CƯA SIÊU CẤP (CHÍNH XÁC NHƯ THẬT) ── */
+    .metro-ticket-final {
+        width: 520px; background: #FFFFFF; padding: 50px 40px; position: relative;
+        filter: drop-shadow(0 15px 40px rgba(0,0,0,0.12)); margin: 20px 0 40px 0;
+        text-align: left; border-left: 1px solid #EEE; border-right: 1px solid #EEE;
+    }
+
+    /* Hiệu ứng răng cưa zig-zag thực tế (@@image_2.png) */
+    .metro-ticket-final::before, .metro-ticket-final::after {
+        content: ""; position: absolute; left: -1px; right: -1px; height: 16px;
+        background-size: 20px 20px; background-repeat: repeat-x;
+    }
+    .metro-ticket-final::before {
+        top: -16px; background-image: linear-gradient(45deg, #FFF) 25%, transparent 25%), linear-gradient(-45deg, #FFF) 25%, transparent 25%);
+        background-position: left bottom;
+    }
+    .metro-ticket-final::after {
+        bottom: -16px; background-image: linear-gradient(135deg, #FFF) 25%, transparent 25%), linear-gradient(-135deg, #FFF) 25%, transparent 25%);
+        background-position: left top;
+    }
+
+    /* Branding & Perforation lines */
+    .ticket-brand {
+        text-align: center; border-bottom: 2px dashed #E5E5EA;
+        padding-bottom: 25px; margin-bottom: 25px;
+    }
+    .ticket-brand h2 { margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 2px; color: #1B2A4A; }
+    .ticket-brand span { font-size: 13px; color: #8E8E93; font-weight: 700; }
+
+    /* Thông tin vé chi tiết */
+    .ticket-details { margin-bottom: 25px; }
+    .info-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 18px; }
+    .info-row .label { color: #8E8E93; font-weight: 700; text-transform: uppercase; font-size: 13px; }
+    .info-row .value { color: #1C1C1E; font-weight: 800; }
+    .info-row .value.metro-red { color: #D0021B; } /* Màu đỏ đặc trưng */
+
+    /* Barcode xịn hơn */
+    .barcode-area {
+        margin-top: 30px; padding-top: 25px; border-top: 2px dashed #E5E5EA;
+        text-align: center;
+    }
+    .barcode-bars {
+        width: 100%; height: 70px; display: flex; align-items: flex-end; justify-content: center; gap: 2px; margin-bottom: 10px;
+    }
+    .bar { background: #1C1C1E; width: 3px; border-radius: 1px; }
+
+    /* Huy hiệu bảo mật & QR */
+    .security-badge { text-align: center; margin-bottom: 30px; color: #34C759; font-weight: 700; font-size: 14px; }
+    .security-qr { width: 140px; height: 140px; margin: 0 auto; display: block; margin-bottom: 30px; border: 1px solid #EEE; padding: 10px; border-radius: 12px; }
+
+    /* ── NÚT BẤM VÀ REDIRECT ── */
+    .redirect-box {
+        background: #F2F2F7; padding: 15px 30px; border-radius: 50px;
+        margin-bottom: 30px; display: flex; align-items: center; gap: 15px;
+        font-weight: 700; color: #444;
+    }
+    .mini-progress { width: 100px; height: 6px; background: #E5E5EA; border-radius: 10px; overflow: hidden; }
+    .mini-fill { height: 100%; background: #0082FB; width: 100%; transition: width 1s linear; }
+
+    .btn-finish {
+        width: 520px; padding: 24px; background: #1C1C1E; color: white;
+        border: none; border-radius: 20px; font-size: 24px; font-weight: 900;
+        cursor: pointer; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    .btn-finish:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+
+    @@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── QUY TẮC IN PDF/KHỔ IN NHIỆT (@@media print) ── */
+    @@media print {
+        /* Chỉ in phần vé, không in nút bấm hay nền */
+        body * { visibility: hidden; }
+        .metro-ticket-final, .metro-ticket-final * { visibility: visible; }
+        .metro-ticket-final {
+            position: absolute; left: 0; top: 0;
+            width: 80mm; /* Khổ giấy in nhiệt chuẩn */
+            border: none; box-shadow: none; filter: none; padding: 10mm;
+        }
+        /* Bỏ răng cưa khi in ra PDF để nhìn sạch hơn */
+        .metro-ticket-final::before, .metro-ticket-final::after { display: none; }
+        /* Ẩn huy hiệu và QR code trên bản in, chỉ hiện trên màn hình */
+        .security-badge, .security-qr { display: none !important; }
+    }
+</style>
+
+<div class="success-container">
+    <div class="success-header">
+        <div class="check-circle">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h1 class="success-title">Success!</h1>
+        <p class="success-subtitle">Please collect your ticket below</p>
+    </div>
+
+    <div class="metro-ticket-final" id="printableTicket">
+        <div class="ticket-brand">
+            <div style="font-size: 11px; font-weight: 800; color: #1B2A4A; text-transform: uppercase;">Mã Vé: @Model.TicketCode</div>
+            <h2>HCMC METRO</h2>
+            <span>Smart Ticketing · @Model.PaidAt?.ToString("yyyy-MM-dd HH:mm")</span>
+        </div>
+
+        <div class="ticket-details">
+            <div class="info-row"><span class="label">Từ / From</span><span class="value metro-red">@(Model.FromStation?.NameEn ?? "Ben Thanh")</span></div>
+            <div class="info-row"><span class="label">Đến / To</span><span class="value metro-red">@(Model.ToStation?.NameEn ?? "Station")</span></div>
+            <div class="info-row"><span class="label">Loại Vé / Type</span><span class="value">@(Model.IsReturn ? "Khứ hồi" : "Một chiều")</span></div>
+            <div class="info-row"><span class="label">Số Lượng / Qty</span><span class="value">@Model.Quantity Ticket(s)</span></div>
+            <div class="info-row"><span class="label">Ga In / Machine</span><span class="value">@Model.MachineId</span></div>
+            <div class="info-row" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #E5E5EA;">
+                <span class="label">Tổng Cộng / Total</span><span class="value highlight" style="font-size: 26px;">@totalAmount.ToString("N0")₫</span>
+            </div>
+        </div>
+
+        <div class="barcode-area">
+            <div class="barcode-bars">
+                @for (int i = 0; i < 45; i++) {
+                    var h = new Random().Next(40, 70);
+                    var w = new Random().Next(2, 6);
+                    <div class="bar" style="height: @(h)px; width: @(w)px; opacity: @(new Random().NextDouble() * 0.5 + 0.5)"></div>
+                }
+            </div>
+            <span style="font-family: monospace; letter-spacing: 5px; color: #8E8E93; font-size: 11px;">@Model.BarcodeData.Substring(0, 16)</span>
+            <div style="font-size: 9px; color: #8E8E93; margin-top: 10px;"> SINGLE TRIP TICKET. VALID FOR 3 HOURS FROM ISSUE. TRANSFER WITHIN 1 HOUR ALLOWED. NON-REFUNDABLE. </div>
+        </div>
+    </div>
+
+    <div class="security-badge">✓ SECURITY VERIFIED</div>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=HCMCMetroSecured:@Model.TicketCode" class="security-qr"/>
+
+    <div class="redirect-box">
+        <span>Auto-printing...</span>
+        <div class="mini-progress">
+            <div class="mini-fill" id="redirectFill"></div>
+        </div>
+        <span id="secs">15</span>s
+    </div>
+
+    <button class="btn-finish" onclick="window.location.href='/'">
+        DONE
+    </button>
+</div>
+
+@section Scripts {
+    <script>
+        // --- 1. TỰ ĐỘNG GỌI HỘP THOẠI IN (PDF/GIẤY IN NHIỆT) ---
+        // Cho khách 1s để thấy chữ Success trước khi hiện popup in
+        setTimeout(() => {
+            window.print();
+        }, 1500);
+
+        // --- 2. COUNTDOWN ĐỂ QUAY VỀ TRANG CHỦ ---
+        let timeLeft = 15;
+        const fill = document.getElementById('redirectFill');
+        const txt = document.getElementById('secs');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            if(txt) txt.innerText = timeLeft;
+            if(fill) fill.style.width = (timeLeft / 15 * 100) + '%';
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = '/';
+            }
+        }, 1000);
+    </script>
+}

@@ -1,180 +1,134 @@
-@{
-Layout = null;
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HCMC Metro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            background: #e8edf2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .screen {
-            width: 480px;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        /* ── Map background ── */
-        .map-bg {
-            position: absolute;
-            inset: 0;
-            background: #dce8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        /* Placeholder map — swap with <img src="~/images/metro-map.png"> when ready */
-        .map-bg svg {
-            width: 100%;
-            height: 100%;
-            opacity: 0.55;
-        }
-
-        /* ── Hamburger top-left ── */
-        .menu-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .menu-btn span {
-            display: block;
-            height: 2px;
-            background: #1B2A4A;
-            border-radius: 2px;
-        }
-
-        /* ── Center logo ── */
-        .logo-wrap {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-            text-align: center;
-            z-index: 10;
-        }
-
-        .logo-icon {
-            width: 80px;
-            height: 60px;
-            margin: 0 auto 12px;
-        }
-
-        .logo-name {
-            font-size: 28px;
-            font-weight: 800;
-            color: #1B2A4A;
-            letter-spacing: 1px;
-        }
-
-        /* ── Language toggle ── */
-        .lang-toggle {
-            position: absolute;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 48px;
-            z-index: 10;
-        }
-
-        .lang-btn {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1B2A4A;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: none;
-            background: none;
-            font-family: inherit;
-            transition: .15s;
-        }
-        .lang-btn.active { color: #1565C0; border-bottom: 2px solid #1565C0; }
-        .lang-btn:hover  { color: #1565C0; }
-
-        /* ── Get started button ── */
-        .btn-start {
-            position: absolute;
-            bottom: 32px;
-            left: 24px;
-            right: 24px;
-            background: #D0021B;
-            color: white;
-            border: none;
-            border-radius: 14px;
-            padding: 20px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            z-index: 10;
-            transition: .15s;
-        }
-        .btn-start:hover { background: #b00118; }
-    </style>
-</head>
-<body>
-<div class="screen">
-
-    <!-- Map background -->
-    <div class="map-bg">
-        <img src="/images/homebackground.webp" style="opacity:10%;width:100%;height:100%;object-fit:cover">
-    </div>
-
-    <!-- Hamburger -->
-    <div class="menu-btn">
-        <span></span><span></span><span></span>
-    </div>
-
-    <!-- Logo -->
-    <div class="logo-wrap">
-        <img src="/images/logo.png" style="width:400px;height:auto">
-    </div>
-
-    <!-- Language toggle -->
-    <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn"        onclick="setLang('vi')">VI</button>
-    </div>
-
-    <!-- Get started -->
-    <a href="/Ticket/Buy" class="btn-start">Get started</a>
-
-</div>
-
-<script>
-    function setLang(l) {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+<style>
+    :root {
+        --metro-blue: #1B2A4A;
+        --metro-red: #D0021B;
+        --bg-paper: #F4F1EA;
     }
-</script>
-</body>
-</html>
+
+    /* Đảm bảo trang Home chiếm trọn phần thân máy Kiosk */
+    .home-container {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 80px); /* Trừ đi chiều cao của Header */
+        background: var(--bg-paper);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 0;
+    }
+
+    /* Background Mini Metro - Ẩn bớt để không rối */
+    .mini-metro-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        opacity: 0.6;
+        filter: blur(1px);
+    }
+
+    .metro-path {
+        fill: none;
+        stroke-width: 10;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    /* Đoàn tàu chạy */
+    .train-unit {
+        animation: travel 15s infinite linear;
+    }
+
+    @@keyframes travel {
+        from { offset-distance: 0%; }
+        to { offset-distance: 100%; }
+    }
+
+    /* Nội dung chính */
+    .main-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+    }
+
+    .logo-hero {
+        width: 420px;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    }
+
+    /* Footer area */
+    .home-footer {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        padding: 0 40px;
+    }
+
+    .lang-switch {
+        display: inline-flex;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 4px;
+        border-radius: 50px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .lang-btn {
+        font-size: 14px;
+        font-weight: 800;
+        padding: 10px 24px;
+        border-radius: 40px;
+        border: none;
+        background: transparent;
+        color: var(--metro-blue);
+        opacity: 0.4;
+        cursor: pointer;
+    }
+
+    .lang-btn.active {
+        background: #fff;
+        opacity: 1;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .btn-get-started {
+        background: var(--metro-red);
+        color: white;
+        border-radius: 16px;
+        padding: 22px;
+        font-size: 24px;
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: none;
+        display: block;
+        box-shadow: 0 15px 30px rgba(208, 2, 27, 0.2);
+    }
+</style>
+
+<div class="home-container">
+    <div class="mini-metro-bg">
+        <svg width="100%" height="100%" viewBox="0 0 540 800">
+            <path id="path1" class="metro-path" d="M-50,300 L200,300 L350,450 L600,450" stroke="rgba(21, 101, 192, 0.2)"/>
+            <path id="path2" class="metro-path" d="M150,850 L150,500 L400,250 L400,-50" stroke="rgba(208, 2, 27, 0.2)"/>
+            
+            <rect width="18" height="10" fill="var(--metro-blue)" class="train-unit" style="offset-path: path('M-50,300 L200,300 L350,450 L600,450');"/>
+            <rect width="18" height="10" fill="var(--metro-red)" class="train-unit" style="offset-path: path('M150,850 L150,500 L400,250 L400,-50'); animation-delay: -7s;"/>
+
+            <circle fill="#fff" stroke="#333" stroke-width="2" cx="200" cy="300" r="8" />
+            <rect fill="#fff" stroke="#333" stroke-width="2" x="340" y="440" width="16" height="16" />
+        </svg>
+    </div>
+
+    <div class="main-content">
+        <img src="/images/logo.png" class="logo-hero" alt="HCMC Metro">
+    </div>
+
+    <div class="home-footer">
+        <div class="lang-switch">
+            <button class="lang-btn active">EN</button>
+            <button class="lang-btn">VI</button>
+        </div>
+        <a href="/Ticket/Buy" class="btn-get-started">Get Started</a>
+    </div>
+</div>

@@ -48,9 +48,11 @@ public class TicketController : Controller
     {
         var method = Enum.Parse<PaymentMethod>(paymentMethod);
         var ticket = await _svc.CreateTicketAsync(1, toStationId, method, isReturn, quantity);
-        return RedirectToAction("PayQR", new { id = ticket.Id });
-    }
 
+        return method == PaymentMethod.CreditCard
+            ? RedirectToAction("PayCard", new { id = ticket.Id })
+            : RedirectToAction("PayQR",   new { id = ticket.Id });
+    }
     [HttpGet]
     public IActionResult Debug()
     {
@@ -75,15 +77,17 @@ public class TicketController : Controller
         if (ticket == null) return RedirectToAction("Buy");
         return View(ticket);
     }
-
+    
     [HttpPost]
     public async Task<IActionResult> ProcessPayment(int id)
     {
         var ok = await _svc.ConfirmPaymentAsync(id);
         if (!ok) return RedirectToAction("PayFail", new { id });
-        return RedirectToAction("PaySuccess", new { id });
-    }
 
+        var ticket = await _svc.GetTicketAsync(id);
+        return RedirectToAction("Success", new { code = ticket!.TicketCode });
+    }
+    
     [HttpPost]
     public async Task<IActionResult> Cancel(int id)
     {
@@ -109,6 +113,26 @@ public class TicketController : Controller
         if (ticket == null) return RedirectToAction("Buy");
         return View(ticket);
     }
+    [HttpGet]
+    public async Task<IActionResult> AdminConfirm(string ticketCode)
+    {
+        var ticket = await _db.Tickets
+            .FirstOrDefaultAsync(t => t.TicketCode == ticketCode);
+    
+        if (ticket == null) 
+            return Content("Ticket not found");
+    
+        if (ticket.Status == TicketStatus.Paid)
+            return Content("Already paid");
+
+        ticket.Status        = TicketStatus.Paid;
+        ticket.PaidAt        = DateTime.Now;
+        ticket.TransactionId = $"TXN{Guid.NewGuid():N}".ToUpper()[..16];
+        await _db.SaveChangesAsync();
+
+        return Content($"OK - {ticketCode} marked as Paid");
+    }
+    
 
     [HttpGet]
     public IActionResult PayFail(int id) => View(id);

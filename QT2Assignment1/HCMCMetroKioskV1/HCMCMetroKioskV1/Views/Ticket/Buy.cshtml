@@ -105,15 +105,18 @@ ViewData["Title"] = "Buy Ticket";
             double stepX = totalNodes > 1 ? (endX - startX) / (totalNodes - 1) : 0;
             int fixedY = 260;
 
-            if (Model != null && Model.Count > 0)
+            @if (Model != null && Model.Count > 0)
             {
-            int originCx = (int)Math.Round(startX);
-            <g style="pointer-events: none;">
-                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="2s" repeatCount="indefinite"/>
-                <rect x="@(originCx - 45)" y="@(fixedY - 70)" width="90" height="24" rx="12" fill="#1C1C1E"/>
-                <path d="M @(originCx - 6) @(fixedY - 47) L @(originCx + 6) @(fixedY - 47) L @originCx @(fixedY - 38) Z" fill="#1C1C1E"/>
-                <text x="@originCx" y="@(fixedY - 54)" font-size="10" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0.5">YOU ARE HERE</text>
-            </g>
+                int originCx = (int)Math.Round(startX);
+                <g style="pointer-events: none;">
+                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,6; 0,0" dur="2s" repeatCount="indefinite"/>
+        
+                    <rect x="@(originCx - 45)" y="@(fixedY + 25)" width="90" height="24" rx="12" fill="#1C1C1E"/>
+        
+                    <path d="M @(originCx - 6) @(fixedY + 25) L @(originCx + 6) @(fixedY + 25) L @originCx @(fixedY + 16) Z" fill="#1C1C1E"/>
+        
+                    <text x="@originCx" y="@(fixedY + 41)" font-size="10" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="0.5">YOU ARE HERE</text>
+                </g>
             }
 
             if (Model != null)

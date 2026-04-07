@@ -48,8 +48,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L0J1eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/QT2Assignment1/HCMCMetroKioskV1/HCMCMetroKioskV1/Views/Ticket/PayCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L1BheUNhcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/QT2Assignment1/HCMCMetroKioskV1/HCMCMetroKioskV1/Views/Ticket/PayFail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L1BheUZhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/thundercock2/Documents/Github/SoftwareEngineering2026/QT2Assignment1/HCMCMetroKioskV1/HCMCMetroKioskV1/Views/Ticket/PayQR.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L1BheVFSLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/QT2Assignment1/HCMCMetroKioskV1/HCMCMetroKioskV1/Views/Ticket/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L1N1Y2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thundercock2/Documents/Github/SoftwareEngineering2026/QT2Assignment1/HCMCMetroKioskV1/HCMCMetroKioskV1/Views/_ViewImports.cshtml]

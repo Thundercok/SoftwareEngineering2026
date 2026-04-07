@@ -9,7 +9,6 @@
     
     
 <style>
-    /* CSS đã được tối ưu để xóa sạch lỗi IDE và căn giữa Logo */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
@@ -140,7 +139,6 @@
 <script>
     (function() {
         function tick() {
-            // Viết gộp để tránh biến trung gian dư thừa
             document.getElementById('topClock').textContent = new Date().toLocaleTimeString('en-GB', { hour12: false });
         }
         tick(); 
