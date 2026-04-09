@@ -1,3 +1,4 @@
+using SchoolAppCoreRazor.Pages.Models;
 namespace WebApplication1.Pages.Models
 {
     public class Enrollment

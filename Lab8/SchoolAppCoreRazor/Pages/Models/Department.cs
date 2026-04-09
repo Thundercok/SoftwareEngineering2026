@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using WebApplication1.Pages.Models;
 
-namespace WebApplication1.Pages.Models
+namespace SchoolAppCoreRazor.Pages.Models
 {
-    public class Depatment
+    public class Department
     {
         public int DepartmentID { get; set; }
         public required string DepartmentName { get; set; }

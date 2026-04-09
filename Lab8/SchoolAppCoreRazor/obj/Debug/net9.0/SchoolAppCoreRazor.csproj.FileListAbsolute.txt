@@ -1,0 +1,10 @@
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.csproj.AssemblyReference.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.AssemblyInfoInputs.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.AssemblyInfo.cs
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.csproj.CoreCompileInputs.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.MvcApplicationPartsAssemblyInfo.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.RazorAssemblyInfo.cache
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.RazorAssemblyInfo.cs
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.sourcelink.json
