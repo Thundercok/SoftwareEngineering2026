@@ -9,8 +9,6 @@
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/SchoolAppCoreRazor.pdb
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/Azure.Core.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/Azure.Identity.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/EntityFramework.SqlServer.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/EntityFramework.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/Microsoft.Data.SqlClient.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/Microsoft.Data.Sqlite.dll
@@ -44,7 +42,6 @@
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.ClientModel.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.CodeDom.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.Data.SqlClient.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.Memory.Data.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.Runtime.Caching.dll
@@ -55,9 +52,6 @@
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-arm64/native/sni.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-x64/native/sni.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-x86/native/sni.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/browser-wasm/nativeassets/net9.0/e_sqlite3.a
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/linux-arm/native/libe_sqlite3.so
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/linux-arm64/native/libe_sqlite3.so
@@ -79,8 +73,6 @@
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-arm64/native/e_sqlite3.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win-x86/native/e_sqlite3.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
-/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/obj/Debug/net9.0/SchoolAppCoreRazor.csproj.AssemblyReference.cache
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/obj/Debug/net9.0/rpswa.dswa.cache.json
@@ -369,3 +361,5 @@
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Scripting.resources.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Scripting.resources.dll
 /Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.Formats.Asn1.dll
+/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/bin/Debug/net9.0/System.Text.Json.dll

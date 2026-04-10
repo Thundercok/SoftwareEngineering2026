@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolAppCoreRazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+381a258ab136982ea534f7ead32a68ff1c542026")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3aaeb87b5b5a471c75e3fb6034235758bfeefd5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolAppCoreRazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolAppCoreRazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

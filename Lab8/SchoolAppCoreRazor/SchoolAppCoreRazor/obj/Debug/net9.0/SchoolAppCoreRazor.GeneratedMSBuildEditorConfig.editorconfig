@@ -28,6 +28,46 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Courses/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Courses/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Courses/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Courses/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Courses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Departments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVwYXJ0bWVudHMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Departments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVwYXJ0bWVudHMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Departments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVwYXJ0bWVudHMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Departments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVwYXJ0bWVudHMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Departments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVwYXJ0bWVudHMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -36,12 +76,52 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Instructors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Instructors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Instructors/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Instructors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Instructors/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Students/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU3R1ZGVudHMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Students/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU3R1ZGVudHMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Students/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU3R1ZGVudHMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Students/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU3R1ZGVudHMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/Students/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU3R1ZGVudHMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/thundercock2/Documents/Github/SoftwareEngineering2026/Lab8/SchoolAppCoreRazor/SchoolAppCoreRazor/Pages/_ViewImports.cshtml]
