@@ -57,11 +57,11 @@ Based on the repository layout:
 
 ---
 
-## 🔗 Project Assets
+1. 🔗 Project Assets
 
-* **Diagrams (Draw.io):** [View UML Charts](https://app.diagrams.net/?src=about#HThundercok%2FSoftwareEngineering2026%2Fmain%2FQT2Assignment1%2Fusecase.drawio#%7B%22pageId%22%3A%22AAIvdWaikjS7hFGzl4Ta%22%7D)
-* **Figma Wireframes:** [View Mockups](https://www.figma.com/design/3AxBQG264cYdank2dyuLb2/wireframe1?node-id=0-1&m=dev&t=gkKtiAMNhs45MZPo-1)
-* **Presentation:** [Canva Slides](https://www.canva.com/design/DAHFe9GggkM/rhmd1VaACo9nIc1JvDc6LA/edit)
+1. **Diagrams (Draw.io):** [View UML Charts](https://app.diagrams.net/?src=about#HThundercok%2FSoftwareEngineering2026%2Fmain%2FQT2Assignment1%2Fusecase.drawio#%7B%22pageId%22%3A%22AAIvdWaikjS7hFGzl4Ta%22%7D)
+1. **Figma Wireframes:** [View Mockups](https://www.figma.com/design/3AxBQG264cYdank2dyuLb2/wireframe1?node-id=0-1&m=dev&t=gkKtiAMNhs45MZPo-1)
+1. **Presentation:** [Canva Slides](https://www.canva.com/design/DAHFe9GggkM/rhmd1VaACo9nIc1JvDc6LA/edit)
 
 ---
 
