@@ -1,0 +1,32 @@
+compact lại tất cả những gì tôi đã làm với bạn trong dự án hcmc metro để tôi báo cáo liêm chính học thuật trong dự án bằng tiếng anh
+
+
+Dưới đây là bản tóm tắt (compact summary) bằng tiếng Anh về các đóng góp và quá trình làm việc của bạn trong dự án **HCMC Metro (BenThanh Metro)**. Bản này được thiết kế để bạn có thể trích xuất vào báo cáo liêm chính học thuật (Academic Integrity Report) hoặc nhật ký dự án (Project Logbook).
+
+---
+
+## **Project Contribution Summary: HCMC Metro - Smart Ticket Vending Machine (TVM) System**
+
+### **1. System Analysis & Requirement Engineering**
+* **Context Definition:** Defined the operational context for a physical Kiosk-based terminal (Ticket Vending Machine) specifically for the BenThanh Metro line.
+* **Requirements Modeling:** Developed comprehensive **Use Case Diagrams** to identify primary actors (Passengers, Technical Staff, Administrators) and their interactions with the system.
+* **Scenario Development:** Drafted detailed **Use Case Specifications** for core functions, including ticket purchasing (Single-trip/Return), card top-ups, and administrative maintenance.
+
+### **2. Architectural & Technical Design**
+* **Structural Modeling:** Designed **Class Diagrams** to establish the backend architecture, ensuring a modular approach to handling ticket data, pricing logic, and user sessions.
+* **Behavioral Modeling:** Created **Sequence Diagrams** to visualize the step-by-step logic of the purchasing process, from station selection to payment confirmation.
+* **UI/UX Design:** Developed **Wireframes** and interface layouts optimized for a physical Kiosk (Large-scale touch interaction), focusing on accessibility and high-traffic efficiency.
+
+### **3. Implementation & Technical Stack**
+* **Backend Development:** Leveraged **C# and .NET Core** to build the system's core logic, focusing on data structures that support real-time ticket validation.
+* **System Integration:** Planned the integration between the user interface and the backend processing units to ensure low-latency responses during peak hours.
+
+### **4. Academic Integrity & Methodology**
+* **Iterative Refinement:** The project underwent multiple iterations, moving from initial mobile-app concepts to a specialized **Kiosk-terminal architecture** to better reflect real-world infrastructure needs.
+* **Authentic Documentation:** All UML diagrams, technical specifications, and code snippets were generated through a collaborative process, ensuring that the logic aligns with the specific requirements of the HCMC Metro urban railway context.
+
+---
+
+### **Gợi ý cho phần giải trình Liêm chính học thuật (Academic Integrity Statement):**
+
+> *"All project artifacts, including UML diagrams and system architecture for the HCMC Metro TVM system, were developed through an iterative design process. While AI tools were utilized for structural brainstorming and documentation formatting, the core logic, system requirements, and architectural decisions were directed and verified by the student to ensure alignment with the technical standards of the Computer Science program at Ton Duc Thang University."*

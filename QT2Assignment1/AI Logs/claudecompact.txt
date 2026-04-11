@@ -1,0 +1,23 @@
+Dưới đây là bản tóm tắt toàn bộ quá trình bạn đã thực hiện trong dự án **HCMC Metro Smart Ticketing System**, được viết bằng tiếng Anh với văn phong chuyên nghiệp, minh bạch. Bản này tập trung làm nổi bật vai trò làm chủ dự án (ownership) của bạn và cách bạn sử dụng AI như một công cụ hỗ trợ để bạn có thể đưa thẳng vào báo cáo liêm chính học thuật.
+
+***
+
+### **Project Contribution & Academic Integrity Report**
+**Project:** HCMC Metro Smart Ticketing System (TVM)
+**Student Name:** Huynh Nhat Huy (Student ID: 523c0012)
+**Role:** Lead Developer, System Architect, UI/UX
+
+#### **1. System Architecture & Project Direction**
+* **Requirements Engineering:** Established the core technical requirements and business logic, including the exact fare matrix and station hierarchy for HCMC Metro Line 1.
+* **Kiosk-First Design:** Directed the architectural shift from a mobile-application layout to a dedicated, physical Kiosk terminal interface (portrait orientation, ATM-swiper style) to ensure the system reflects real-world operational environments. 
+* **Environment Setup:** Independently configured the development environment, managing the C# .NET Core MVC infrastructure and resolving Docker permissions for the MSSQL database container on Apple Silicon.
+
+#### **2. Implementation & AI Collaboration**
+Throughout the development lifecycle, I utilized Large Language Models (Claude/Gemini) as pair-programming assistants. My specific contributions and workflows included:
+* **UI/UX Translation & Refinement:** Provided Figma prototypes to the AI to generate baseline HTML/CSS. I subsequently took manual control to heavily modify and refine the interface. This included independently coding the countdown timers, adjusting the interactive SVG station map, and designing specific aesthetic elements like the zig-zag metro ticket receipt.
+* **Backend Logic & Database:** Directed the AI to scaffold the `TicketController`, `TicketService`, and Entity Framework Core models. I provided the real-world dataset (14 stations, 182 fare rules) and managed the Code-First database migrations.
+* **Payment Gateway Engineering:** Designed the payment flow to utilize VietQR. I instructed the AI on the required API format and built a custom `AdminConfirm` webhook to simulate real-time banking callbacks for the final presentation demo.
+* **Debugging & Quality Assurance:** Actively troubleshooted and resolved critical system errors alongside the AI, including EF Core state tracking issues, Docker container crashes, and Razor view routing bugs.
+
+#### **3. Academic Integrity Declaration**
+> *"I hereby declare that the HCMC Metro Smart Ticketing System is my own work. While I utilized AI assistants (Claude/Gemini) to accelerate development by generating boilerplate code, scaffolding MVC structures, and assisting with debugging, I maintained absolute control over the project's direction. All system requirements, business rules, database schemas, and UX/UI designs were explicitly defined by me. I critically reviewed, refactored, and manually integrated all AI-generated suggestions to ensure they met the technical standards of my Computer Science program at Ton Duc Thang University. I take full responsibility for the final architecture and functionality of the application."*
