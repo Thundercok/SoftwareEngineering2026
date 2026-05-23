@@ -1,0 +1,93 @@
+﻿@model WebMVC.Order
+@{
+    ViewBag.Title = "Chi tiết đơn hàng #" + Model.OrderID;
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Đơn hàng #@Model.OrderID</h3>
+        <div>
+            <button onclick="window.print()" class="btn btn-success">🖨 In đơn hàng</button>
+            @Html.ActionLink("← Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <p><b>Đại lý:</b> @Model.Agent.AgentName</p>
+            @* Dùng dấu ? để tránh lỗi nếu ngày đặt hàng bị trống (NULL) *@
+            <p><b>Ngày đặt:</b> @(Model.OrderDate.HasValue ? Model.OrderDate.Value.ToString("dd/MM/yyyy") : "Chưa có")</p>
+        </div>
+    </div>
+
+    <h5>Chi tiết sản phẩm</h5>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@d.Item.ItemName</td>
+                    <td>@d.Quantity</td>
+                    <td>@string.Format("{0:N0}", d.UnitAmount) đ</td>
+                    <td>@string.Format("{0:N0}", d.Quantity * d.UnitAmount) đ</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="table-warning">
+                <td colspan="3"><b>Tổng cộng</b></td>
+                <td><b>@string.Format("{0:N0}", Model.OrderDetails.Sum(d => d.Quantity * d.UnitAmount)) đ</b></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    @* Form thêm sản phẩm vào đơn *@
+    <div class="card mt-4 no-print">
+        <div class="card-header bg-info text-white">Thêm sản phẩm vào đơn</div>
+        <div class="card-body">
+            @* QUAN TRỌNG: Sửa "Order" thành "Orders" để trỏ đúng Controller *@
+            @using (Html.BeginForm("AddDetail", "Orders", FormMethod.Post))
+            {
+                <input type="hidden" name="orderId" value="@Model.OrderID" />
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        @* Cập nhật ViewBag.ItemID thay vì ViewBag.Items để khớp với Controller *@
+                        @Html.DropDownList("itemId",
+                            ViewBag.ItemID as SelectList,
+                            "-- Chọn sản phẩm --", new { @class = "form-select", required = "required" })
+                    </div>
+                    <div class="col-md-2">
+                        <input name="quantity" type="number" class="form-control" placeholder="Số lượng" min="1" required />
+                    </div>
+                    <div class="col-md-3">
+                        <input name="unitAmount" type="number" class="form-control" placeholder="Đơn giá" required />
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary w-100">Thêm</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    @@media print {
+        .no-print {
+            display: none;
+        }
+
+        .btn {
+            display: none;
+        }
+    }
+</style>

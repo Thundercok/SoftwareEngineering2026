@@ -1,0 +1,14 @@
+@model WebMVC_Core.Models.Item
+
+<h2>Add New Item</h2>
+<form asp-action="Create">
+    <div class="form-group">
+        <label>Item Name</label>
+        <input asp-for="ItemName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Size</label>
+        <input asp-for="Size" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
