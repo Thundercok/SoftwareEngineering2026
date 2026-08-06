@@ -2,7 +2,7 @@
 nesy-docai: Neuro-Symbolic Document AI Research Engine
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 __author__ = "Huỳnh Nhật Huy"
 
 from .system1_vision import VisionPerceptionEngine
@@ -11,6 +11,7 @@ from .tax_verifier import TaxMasterDataVerifier
 from .exporter import AuditExcelExporter
 from .visualizer import BoundingBoxVisualizer
 from .pdf_processor import PDFDocumentProcessor
+from .benchmark_suite import InvoiceBenchmarkSuite
 
 __all__ = [
     "VisionPerceptionEngine",
@@ -19,4 +20,5 @@ __all__ = [
     "AuditExcelExporter",
     "BoundingBoxVisualizer",
     "PDFDocumentProcessor",
+    "InvoiceBenchmarkSuite",
 ]
