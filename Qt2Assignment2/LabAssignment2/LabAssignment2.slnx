@@ -1,8 +1,0 @@
-<Solution>
-  <Project Path="BusinessLogic/BusinessLogic.csproj" Id="268077ac-7cdc-4523-ba6d-edbefd748e1e" />
-  <Project Path="DataAccess/DataAccess.csproj" Id="c0a4e938-b904-47a9-a895-16304f293522" />
-  <Project Path="LabTests/LabTests.csproj" />
-  <Project Path="UIWinForms/UIWinForms.csproj" Id="aee6c872-d93b-400a-9f0a-981a36fa5dce" />
-  <Project Path="WebMVC/WebMVC.csproj" Id="f14574be-a8bb-45e2-8957-70682ca42537" />
-  <Project Path="WebMVC_Core\WebMVC_Core.csproj" />
-</Solution>

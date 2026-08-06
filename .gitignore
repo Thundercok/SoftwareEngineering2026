@@ -1,3 +1,7 @@
-Lab5/TDTUStudentApp/
+.venv/
+venv/
+__pycache__/
+*.pyc
 .DS_Store
-.DS_Store
+*.xlsx
+.pytest_cache/
