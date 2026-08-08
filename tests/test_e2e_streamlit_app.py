@@ -22,9 +22,9 @@ def test_streamlit_app_e2e_batch_demo():
     assert not at.exception
     assert "nesy-docai: Enterprise Batch Document AI Dashboard" in at.title[0].value
 
-    # Find and click the 'Live Stress Test' button
+    # Find and click the 'Stress Test Level' button
     demo_btn = at.button[1]
-    assert "Live Stress Test" in demo_btn.label
+    assert "Stress Test Level" in demo_btn.label
     demo_btn.click().run()
 
     # Verify no exceptions occurred during execution

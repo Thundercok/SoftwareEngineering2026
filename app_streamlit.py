@@ -56,19 +56,28 @@ with tab_batch:
         help="You can drag & drop dozens of invoice files or a ZIP archive containing all invoices."
     )
 
+    challenge_tier = st.radio(
+        "🔥 Challenge Scenario Level (Cấp Độ Thử Thách Kế Toán):",
+        [
+            "🟢 Tier 1: Standard OCR Noise (Bù lỗi ký tự 1O000 -> 10000)",
+            "🟡 Tier 2: Multi-Tax Rates (5%, 8%, 10%) & Itemized Discounts",
+            "🔴 Tier 3: Hardcore Distorted OCR + Fraud Detection (Kê khống & Giả mạo)"
+        ],
+        horizontal=True
+    )
+
     col_btn1, col_btn2, col_btn3 = st.columns([1.5, 2, 2.5])
     with col_btn1:
         run_batch_btn = st.button("🚀 Audit Uploaded Files (Chạy File Đã Chọn)", type="primary", use_container_width=True)
     with col_btn2:
         batch_size = st.slider("Số bill thử nghiệm live", min_value=5, max_value=100, value=20, step=5, label_visibility="collapsed")
     with col_btn3:
-        run_dynamic_batch_btn = st.button(f"⚡ Live Stress Test ({batch_size} Invoices)", type="secondary")
+        run_dynamic_batch_btn = st.button(f"⚡ Stress Test Level ({batch_size} Invoices)", type="secondary")
 
     if run_batch_btn or run_dynamic_batch_btn:
         records_to_process = []
 
         if run_dynamic_batch_btn:
-            # Generate specified number of realistic mock invoices with OCR noise & Z3 verification
             companies = [
                 ("0312345678", "CÔNG TY TNHH THIẾT BỊ VĂN PHÒNG SÀI GÒN"),
                 ("0101234567", "CÔNG TY CP THƯƠNG MẠI DỊCH VỤ AN PHÁT"),
@@ -78,44 +87,84 @@ with tab_batch:
                 ("0400112233", "CÔNG TY TNHH NÔNG SẢN ĐÀ NẮNG"),
                 ("1800445566", "CÔNG TY TNHH VẬT TƯ CẦN THƠ")
             ]
-            items_pool = [
-                ("Bút ký cao cấp M&G", "1O000", 10000),
-                ("Tập vở HS 200 trang", "15000", 15000),
-                ("Giấy in A4 Double A 70gsm", "45000", 45000),
-                ("Chuột máy tính không dây Logitech", "12O000", 120000),
-                ("Bàn phím cơ AKKO 3087", "1000000", 1000000),
-                ("Tai nghe Bluetooth Sony", "1S00000", 1500000),
-                ("Màn hình Dell UltraSharp 27 inch", "7500000", 7500000),
-                ("Ổ cứng SSD Samsung 1TB", "2200000", 2200000)
-            ]
-            for i in range(1, batch_size + 1):
-                tax_id, comp_name = companies[(i - 1) % len(companies)]
-                item_desc, raw_price_str, real_price = items_pool[(i - 1) % len(items_pool)]
-                qty = (i % 5) + 1
-                amount = real_price * qty
-                tax_val = int(amount * 0.1)
-                total_val = amount + tax_val
 
-                mock_inv = {
-                    "invoice_id": f"HD-2026-{i:03d}",
-                    "invoice_date": "2026-08-08",
-                    "seller_tax_id": tax_id,
-                    "seller_name": comp_name,
-                    "line_items": [
-                        {
-                            "item_id": 1,
-                            "description": item_desc,
-                            "quantity": str(qty),
-                            "unit_price": raw_price_str,  # Contains OCR noise
-                            "amount": str(amount),
-                            "bbox": [120, 340, 480, 360]
-                        }
-                    ],
-                    "subtotal": str(amount),
-                    "tax": f"{tax_val}OO" if i % 7 == 0 else str(tax_val),  # Occasional OCR noise in tax
-                    "total": str(total_val)
-                }
-                records_to_process.append((f"Live_Invoice_{i:03d}.png", mock_inv))
+            if "Tier 2" in challenge_tier:
+                # Multi-Tax Rates (5%, 8%, 10%) & Discounts
+                for i in range(1, batch_size + 1):
+                    tax_id, comp_name = companies[(i - 1) % len(companies)]
+                    rate = [5, 8, 10][(i - 1) % 3]
+                    amount = 100000 * i
+                    tax_val = int(amount * (rate / 100))
+                    total_val = amount + tax_val
+
+                    mock_inv = {
+                        "invoice_id": f"HD-TIER2-{i:03d}",
+                        "invoice_date": "2026-08-08",
+                        "seller_tax_id": tax_id,
+                        "seller_name": comp_name,
+                        "line_items": [
+                            {"item_id": 1, "description": f"Mặt hàng thuế VAT {rate}%", "quantity": str(i), "unit_price": "1O0000", "amount": str(amount), "bbox": [120, 340, 480, 360]}
+                        ],
+                        "subtotal": str(amount),
+                        "tax": str(tax_val),
+                        "total": str(total_val)
+                    }
+                    records_to_process.append((f"Tier2_Invoice_{i:03d}.png", mock_inv))
+
+            elif "Tier 3" in challenge_tier:
+                # Hardcore OCR Distortion + Fraud Detection (20% UNSAT Fraud Invoices)
+                for i in range(1, batch_size + 1):
+                    tax_id, comp_name = companies[(i - 1) % len(companies)]
+                    amount = 500000
+                    tax_val = 50000
+                    is_fraud = (i % 5 == 0)
+                    total_val = amount + tax_val + (200000 if is_fraud else 0)  # Fraud adds false +200k
+
+                    mock_inv = {
+                        "invoice_id": f"HD-FRAUD-{i:03d}" if is_fraud else f"HD-HARD-{i:03d}",
+                        "invoice_date": "2026-08-08",
+                        "seller_tax_id": tax_id,
+                        "seller_name": comp_name + (" (CẢNH BÁO KÊ KHỐNG TIỀN)" if is_fraud else ""),
+                        "line_items": [
+                            {"item_id": 1, "description": "Linh kiện điện tử (Nhiễu OCR S00.000)", "quantity": "1", "unit_price": "S00000", "amount": "500000", "bbox": [120, 340, 480, 360]}
+                        ],
+                        "subtotal": "S00000",
+                        "tax": "5OOOO",
+                        "total": str(total_val)
+                    }
+                    records_to_process.append((f"Tier3_Invoice_{i:03d}.png", mock_inv))
+
+            else:
+                # Standard Tier 1
+                items_pool = [
+                    ("Bút ký cao cấp M&G", "1O000", 10000),
+                    ("Tập vở HS 200 trang", "15000", 15000),
+                    ("Giấy in A4 Double A 70gsm", "45000", 45000),
+                    ("Chuột máy tính không dây Logitech", "12O000", 120000),
+                    ("Bàn phím cơ AKKO 3087", "1000000", 1000000),
+                    ("Tai nghe Bluetooth Sony", "1S00000", 1500000)
+                ]
+                for i in range(1, batch_size + 1):
+                    tax_id, comp_name = companies[(i - 1) % len(companies)]
+                    item_desc, raw_price_str, real_price = items_pool[(i - 1) % len(items_pool)]
+                    qty = (i % 5) + 1
+                    amount = real_price * qty
+                    tax_val = int(amount * 0.1)
+                    total_val = amount + tax_val
+
+                    mock_inv = {
+                        "invoice_id": f"HD-2026-{i:03d}",
+                        "invoice_date": "2026-08-08",
+                        "seller_tax_id": tax_id,
+                        "seller_name": comp_name,
+                        "line_items": [
+                            {"item_id": 1, "description": item_desc, "quantity": str(qty), "unit_price": raw_price_str, "amount": str(amount), "bbox": [120, 340, 480, 360]}
+                        ],
+                        "subtotal": str(amount),
+                        "tax": f"{tax_val}OO" if i % 7 == 0 else str(tax_val),
+                        "total": str(total_val)
+                    }
+                    records_to_process.append((f"Live_Invoice_{i:03d}.png", mock_inv))
         elif uploaded_files:
             for i, uploaded_file in enumerate(uploaded_files):
                 filename = uploaded_file.name
