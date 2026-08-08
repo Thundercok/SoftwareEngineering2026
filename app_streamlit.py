@@ -56,62 +56,66 @@ with tab_batch:
         help="You can drag & drop dozens of invoice files or a ZIP archive containing all invoices."
     )
 
-    col_btn1, col_btn2 = st.columns([1, 4])
+    col_btn1, col_btn2, col_btn3 = st.columns([1.5, 2, 2.5])
     with col_btn1:
-        run_batch_btn = st.button("🚀 Start Batch Processing (Chạy Hàng Loạt)", type="primary", use_container_width=True)
+        run_batch_btn = st.button("🚀 Audit Uploaded Files (Chạy File Đã Chọn)", type="primary", use_container_width=True)
     with col_btn2:
-        run_sample_batch_btn = st.button("🧪 Run Batch Demo with 5 Sample Invoices", type="secondary")
+        batch_size = st.slider("Số bill thử nghiệm live", min_value=5, max_value=100, value=20, step=5, label_visibility="collapsed")
+    with col_btn3:
+        run_dynamic_batch_btn = st.button(f"⚡ Live Stress Test ({batch_size} Invoices)", type="secondary")
 
-    if run_batch_btn or run_sample_batch_btn:
+    if run_batch_btn or run_dynamic_batch_btn:
         records_to_process = []
 
-        if run_sample_batch_btn:
-            # 5 Realistic Sample Invoices with OCR Noise and Z3 Verification
-            sample_invoices = [
-                {
-                    "invoice_id": "HD-2026-00892", "date": "2026-08-07", "tax_id": "0312345678",
-                    "seller_name": "CÔNG TY TNHH THIẾT BỊ VĂN PHÒNG SÀI GÒN",
-                    "line_items": [
-                        {"item_id": 1, "description": "Bút ký cao cấp M&G", "quantity": "2", "unit_price": "1O000", "amount": "20000", "bbox": [120, 340, 480, 360]},
-                        {"item_id": 2, "description": "Tập vở HS 200 trang", "quantity": "5", "unit_price": "15000", "amount": "75000", "bbox": [120, 370, 480, 390]}
-                    ],
-                    "subtotal": "95000", "tax": "95OO", "total": "104500"
-                },
-                {
-                    "invoice_id": "HD-2026-00893", "date": "2026-08-07", "tax_id": "0101234567",
-                    "seller_name": "CÔNG TY CP THƯƠNG MẠI DỊCH VỤ AN PHÁT",
-                    "line_items": [
-                        {"item_id": 1, "description": "Giấy in A4 Double A 70gsm", "quantity": "10", "unit_price": "45000", "amount": "450000", "bbox": [120, 340, 480, 360]}
-                    ],
-                    "subtotal": "450000", "tax": "45OOO", "total": "495000"
-                },
-                {
-                    "invoice_id": "HD-2026-00894", "date": "2026-08-08", "tax_id": "0319876543",
-                    "seller_name": "CÔNG TY TNHH CÔNG NGHỆ SỐ HÀI DÓN",
-                    "line_items": [
-                        {"item_id": 1, "description": "Chuột máy tính không dây Logitech", "quantity": "3", "unit_price": "12O000", "amount": "360000", "bbox": [120, 340, 480, 360]}
-                    ],
-                    "subtotal": "360000", "tax": "36000", "total": "396000"
-                },
-                {
-                    "invoice_id": "HD-2026-00895", "date": "2026-08-08", "tax_id": "0305556667",
-                    "seller_name": "CÔNG TY TNHH THƯƠNG MẠI MINH ĐỨC (CÓ LỖI TOÁN HỌC)",
-                    "line_items": [
-                        {"item_id": 1, "description": "Bàn phím cơ AKKO 3087", "quantity": "1", "unit_price": "1000000", "amount": "1000000", "bbox": [120, 340, 480, 360]}
-                    ],
-                    "subtotal": "1000000", "tax": "100000", "total": "1500000"  # Conflict: 1M + 100k != 1.5M -> Z3 flags UNSAT!
-                },
-                {
-                    "invoice_id": "HD-2026-00896", "date": "2026-08-08", "tax_id": "0109998887",
-                    "seller_name": "CÔNG TY CP ĐIỆN MÁY VIỆT NAM",
-                    "line_items": [
-                        {"item_id": 1, "description": "Tai nghe Bluetooth Sony", "quantity": "1", "unit_price": "1S00000", "amount": "1500000", "bbox": [120, 340, 480, 360]}
-                    ],
-                    "subtotal": "1500000", "tax": "150000", "total": "1650000"
-                }
+        if run_dynamic_batch_btn:
+            # Generate specified number of realistic mock invoices with OCR noise & Z3 verification
+            companies = [
+                ("0312345678", "CÔNG TY TNHH THIẾT BỊ VĂN PHÒNG SÀI GÒN"),
+                ("0101234567", "CÔNG TY CP THƯƠNG MẠI DỊCH VỤ AN PHÁT"),
+                ("0319876543", "CÔNG TY TNHH CÔNG NGHỆ SỐ HÀI DÓN"),
+                ("0305556667", "CÔNG TY TNHH THƯƠNG MẠI MINH ĐỨC"),
+                ("0109998887", "CÔNG TY CP ĐIỆN MÁY VIỆT NAM"),
+                ("0400112233", "CÔNG TY TNHH NÔNG SẢN ĐÀ NẮNG"),
+                ("1800445566", "CÔNG TY TNHH VẬT TƯ CẦN THƠ")
             ]
-            for i, inv in enumerate(sample_invoices):
-                records_to_process.append((f"Sample_Invoice_{i+1}.png", inv))
+            items_pool = [
+                ("Bút ký cao cấp M&G", "1O000", 10000),
+                ("Tập vở HS 200 trang", "15000", 15000),
+                ("Giấy in A4 Double A 70gsm", "45000", 45000),
+                ("Chuột máy tính không dây Logitech", "12O000", 120000),
+                ("Bàn phím cơ AKKO 3087", "1000000", 1000000),
+                ("Tai nghe Bluetooth Sony", "1S00000", 1500000),
+                ("Màn hình Dell UltraSharp 27 inch", "7500000", 7500000),
+                ("Ổ cứng SSD Samsung 1TB", "2200000", 2200000)
+            ]
+            for i in range(1, batch_size + 1):
+                tax_id, comp_name = companies[(i - 1) % len(companies)]
+                item_desc, raw_price_str, real_price = items_pool[(i - 1) % len(items_pool)]
+                qty = (i % 5) + 1
+                amount = real_price * qty
+                tax_val = int(amount * 0.1)
+                total_val = amount + tax_val
+
+                mock_inv = {
+                    "invoice_id": f"HD-2026-{i:03d}",
+                    "invoice_date": "2026-08-08",
+                    "seller_tax_id": tax_id,
+                    "seller_name": comp_name,
+                    "line_items": [
+                        {
+                            "item_id": 1,
+                            "description": item_desc,
+                            "quantity": str(qty),
+                            "unit_price": raw_price_str,  # Contains OCR noise
+                            "amount": str(amount),
+                            "bbox": [120, 340, 480, 360]
+                        }
+                    ],
+                    "subtotal": str(amount),
+                    "tax": f"{tax_val}OO" if i % 7 == 0 else str(tax_val),  # Occasional OCR noise in tax
+                    "total": str(total_val)
+                }
+                records_to_process.append((f"Live_Invoice_{i:03d}.png", mock_inv))
         elif uploaded_files:
             for i, uploaded_file in enumerate(uploaded_files):
                 filename = uploaded_file.name
@@ -131,7 +135,7 @@ with tab_batch:
                     raw["invoice_id"] = f"HD-2026-{890+i:03d}"
                     records_to_process.append((filename, raw))
         else:
-            st.warning("⚠️ Please select files to upload or click 'Run Batch Demo'!")
+            st.warning("⚠️ Please select files to upload or click 'Live Stress Test'!")
 
         if records_to_process:
             st.markdown("---")

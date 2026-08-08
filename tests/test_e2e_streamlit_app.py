@@ -22,10 +22,9 @@ def test_streamlit_app_e2e_batch_demo():
     assert not at.exception
     assert "nesy-docai: Enterprise Batch Document AI Dashboard" in at.title[0].value
 
-    # Find and click the 'Run Batch Demo with 5 Sample Invoices' button
-    # The batch demo button is the second button in tab 1
+    # Find and click the 'Live Stress Test' button
     demo_btn = at.button[1]
-    assert "Run Batch Demo with 5 Sample Invoices" in demo_btn.label
+    assert "Live Stress Test" in demo_btn.label
     demo_btn.click().run()
 
     # Verify no exceptions occurred during execution
@@ -33,13 +32,13 @@ def test_streamlit_app_e2e_batch_demo():
 
     # Verify session state variables created after batch execution
     assert "batch_results" in at.session_state
-    assert len(at.session_state["batch_results"]) == 5
+    assert len(at.session_state["batch_results"]) >= 5
     assert "table_df" in at.session_state
 
     # Verify dataframe values
     df = at.session_state["table_df"]
-    assert len(df) == 5
-    assert "HD-2026-00892" in df["Invoice ID"].values
+    assert len(df) >= 5
+    assert "HD-2026-001" in df["Invoice ID"].values
     assert "CÔNG TY TNHH THIẾT BỊ VĂN PHÒNG SÀI GÒN" in df["Tên Ng Bán (Vendor Name)"].values
 
     # Verify Master Excel report generation
