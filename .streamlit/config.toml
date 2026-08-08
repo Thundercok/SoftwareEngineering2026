@@ -1,0 +1,9 @@
+[server]
+maxUploadSize = 500
+maxMessageSize = 500
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+serverAddress = "0.0.0.0"
