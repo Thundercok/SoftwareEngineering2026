@@ -116,15 +116,19 @@ with tab_batch:
             for i, uploaded_file in enumerate(uploaded_files):
                 filename = uploaded_file.name
                 if filename.endswith(".zip"):
-                    with zipfile.ZipFile(uploaded_file) as z:
-                        for zidx, zname in enumerate(z.namelist()):
-                            if zname.lower().endswith(('.png', '.jpg', '.jpeg', '.pdf')):
-                                raw = vision_engine.process_invoice_image(zname)
-                                raw["invoice_id"] = f"HD-2026-{800+zidx}"
-                                records_to_process.append((zname, raw))
+                    try:
+                        zip_bytes = io.BytesIO(uploaded_file.getvalue())
+                        with zipfile.ZipFile(zip_bytes) as z:
+                            for zidx, zname in enumerate(z.namelist()):
+                                if not zname.startswith("__MACOSX") and zname.lower().endswith(('.png', '.jpg', '.jpeg', '.pdf')):
+                                    raw = vision_engine.process_invoice_image(zname)
+                                    raw["invoice_id"] = f"HD-2026-{800+zidx:03d}"
+                                    records_to_process.append((os.path.basename(zname), raw))
+                    except Exception as e:
+                        st.error(f"❌ Could not extract ZIP file `{filename}`: {str(e)}")
                 else:
                     raw = vision_engine.process_invoice_image(filename)
-                    raw["invoice_id"] = f"HD-2026-{890+i}"
+                    raw["invoice_id"] = f"HD-2026-{890+i:03d}"
                     records_to_process.append((filename, raw))
         else:
             st.warning("⚠️ Please select files to upload or click 'Run Batch Demo'!")
@@ -142,36 +146,52 @@ with tab_batch:
             for idx, (fname, raw_data) in enumerate(records_to_process):
                 status_text.markdown(f"⏳ **Processing [{idx+1}/{len(records_to_process)}]:** `{fname}`...")
                 
-                # Execute System 2 Z3 Solver
-                verified = solver_engine.solve_and_verify(raw_data)
-                
-                # Tax Verification
-                if enable_tax_verification:
-                    tax_info = tax_verifier.verify_tax_id(verified.get("seller_tax_id", ""))
-                    verified["tax_verification"] = tax_info
+                try:
+                    # Execute System 2 Z3 Solver
+                    verified = solver_engine.solve_and_verify(raw_data)
+                    
+                    # Tax Verification
+                    if enable_tax_verification:
+                        tax_info = tax_verifier.verify_tax_id(verified.get("seller_tax_id", ""))
+                        verified["tax_verification"] = tax_info
 
-                processed_results.append(verified)
+                    processed_results.append(verified)
 
-                is_sat = verified.get("audit_status") == "VERIFIED_SAT"
+                    is_sat = verified.get("audit_status") == "VERIFIED_SAT"
 
-                # Format row for live table
-                table_rows.append({
-                    "File": fname,
-                    "Invoice ID": verified.get("invoice_id", raw_data.get("invoice_id")),
-                    "Date": verified.get("invoice_date", raw_data.get("invoice_date")),
-                    "MST Ng Bán (Vendor Tax Code)": verified.get("seller_tax_id", raw_data.get("seller_tax_id")),
-                    "Tên Ng Bán (Vendor Name)": verified.get("seller_name", raw_data.get("seller_name")),
-                    "Nội Dung Diễn Giải": verified.get("description_summary", ", ".join([item.get("description", "") for item in raw_data.get("line_items", [])])),
-                    "Tiền Hàng Subtotal (VND)": f"{verified.get('subtotal', 0):,}" if is_sat else f"Raw: {raw_data.get('subtotal')}",
-                    "Thuế Suất Tax Rate (%)": verified.get("tax_rate", "10%") if is_sat else "N/A",
-                    "Tiền Thuế VAT Tax Amount (VND)": f"{verified.get('tax', 0):,}" if is_sat else f"Raw: {raw_data.get('tax')}",
-                    "Tổng Thanh Toán Total (VND)": f"{verified.get('total', 0):,}" if is_sat else f"Raw: {raw_data.get('total')}",
-                    "Audit Status": "✅ VERIFIED_SAT" if is_sat else "❌ FLAGGED_UNSAT (Lỗi tính toán)",
-                    "Z3 Resolution": "Z3 Auto-Repaired OCR" if is_sat else "Z3 Logic Constraint Failed"
-                })
+                    # Format row for live table
+                    table_rows.append({
+                        "File": fname,
+                        "Invoice ID": verified.get("invoice_id", raw_data.get("invoice_id")),
+                        "Date": verified.get("invoice_date", raw_data.get("invoice_date")),
+                        "MST Ng Bán (Vendor Tax Code)": verified.get("seller_tax_id", raw_data.get("seller_tax_id")),
+                        "Tên Ng Bán (Vendor Name)": verified.get("seller_name", raw_data.get("seller_name")),
+                        "Nội Dung Diễn Giải": verified.get("description_summary", ", ".join([item.get("description", "") for item in raw_data.get("line_items", [])])),
+                        "Tiền Hàng Subtotal (VND)": f"{verified.get('subtotal', 0):,}" if is_sat else f"Raw: {raw_data.get('subtotal')}",
+                        "Thuế Suất Tax Rate (%)": verified.get("tax_rate", "10%") if is_sat else "N/A",
+                        "Tiền Thuế VAT Tax Amount (VND)": f"{verified.get('tax', 0):,}" if is_sat else f"Raw: {raw_data.get('tax')}",
+                        "Tổng Thanh Toán Total (VND)": f"{verified.get('total', 0):,}" if is_sat else f"Raw: {raw_data.get('total')}",
+                        "Audit Status": "✅ VERIFIED_SAT" if is_sat else "❌ FLAGGED_UNSAT (Lỗi tính toán)",
+                        "Z3 Resolution": "Z3 Auto-Repaired OCR" if is_sat else "Z3 Logic Constraint Failed"
+                    })
+                except Exception as ex:
+                    table_rows.append({
+                        "File": fname,
+                        "Invoice ID": raw_data.get("invoice_id", "N/A"),
+                        "Date": raw_data.get("invoice_date", "N/A"),
+                        "MST Ng Bán (Vendor Tax Code)": raw_data.get("seller_tax_id", "N/A"),
+                        "Tên Ng Bán (Vendor Name)": raw_data.get("seller_name", "N/A"),
+                        "Nội Dung Diễn Giải": "Error processing file",
+                        "Tiền Hàng Subtotal (VND)": "0",
+                        "Thuế Suất Tax Rate (%)": "0%",
+                        "Tiền Thuế VAT Tax Amount (VND)": "0",
+                        "Tổng Thanh Toán Total (VND)": "0",
+                        "Audit Status": f"❌ ERROR ({str(ex)})",
+                        "Z3 Resolution": "Execution Exception"
+                    })
 
                 progress_bar.progress((idx + 1) / len(records_to_process))
-                time.sleep(0.05)
+                time.sleep(0.01)
 
             status_text.success(f"🎉 **Batch Processing Complete!** Successfully audited {len(processed_results)} invoices.")
 
