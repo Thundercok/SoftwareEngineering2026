@@ -35,8 +35,9 @@ class AuditExcelExporter:
         ws_summary.title = "Invoice Summary"
 
         summary_headers = [
-            "Invoice ID", "Date", "Seller Tax ID", "Seller Name",
-            "Subtotal (VND)", "Tax (VND)", "Total (VND)",
+            "Invoice ID", "Date", "MST Ng Bán (Vendor Tax Code)", "Tên Ng Bán (Vendor Name)",
+            "Nội Dung Diễn Giải (Description)", "Tiền Hàng Subtotal (VND)",
+            "Thuế Suất Tax Rate (%)", "Tiền Thuế VAT Tax Amount (VND)", "Tổng Thanh Toán Total (VND)",
             "Audit Status", "Tax Verification"
         ]
 
@@ -54,10 +55,12 @@ class AuditExcelExporter:
             row_data = [
                 record.get("invoice_id"),
                 record.get("invoice_date"),
-                record.get("seller_tax_id"),
+                record.get("seller_tax_id", record.get("vendor_tax_code", "")),
                 record.get("seller_name"),
+                record.get("description_summary", ""),
                 record.get("subtotal"),
-                record.get("tax"),
+                record.get("tax_rate", "10%"),
+                record.get("tax", record.get("tax_amount")),
                 record.get("total"),
                 record.get("audit_status"),
                 tax_status_str
@@ -65,7 +68,7 @@ class AuditExcelExporter:
             ws_summary.append(row_data)
 
             current_row = ws_summary.max_row
-            status_cell = ws_summary.cell(row=current_row, column=8)
+            status_cell = ws_summary.cell(row=current_row, column=10)
             if record.get("audit_status") == "VERIFIED_SAT":
                 status_cell.fill = sat_fill
             else:

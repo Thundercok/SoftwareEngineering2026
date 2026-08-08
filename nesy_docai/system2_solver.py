@@ -97,13 +97,16 @@ class SymbolicSolverEngine:
             tax_val = model[z3_tax].as_long()
             total_val = model[z3_total].as_long()
 
+            calc_tax_rate = f"{round((tax_val / subtotal_val) * 100)}%" if subtotal_val > 0 else "0%"
+            desc_summary = ", ".join([item["description"] for item in corrected_items if item.get("description")])
+
             proof_certificate = {
                 "smt_status": "SAT",
                 "proof_formula": "Subtotal = Sum(LineAmounts) AND Total = Subtotal + Tax",
                 "constraints_verified": [
                     f"Line items verified: {n}",
                     f"Subtotal = {subtotal_val}",
-                    f"Tax = {tax_val} (Rate ~{round((tax_val/subtotal_val)*100 if subtotal_val else 0)}%)",
+                    f"Tax = {tax_val} (Tax Rate: {calc_tax_rate})",
                     f"Total = {total_val}"
                 ]
             }
@@ -113,10 +116,14 @@ class SymbolicSolverEngine:
                 "invoice_id": raw_data.get("invoice_id"),
                 "invoice_date": raw_data.get("invoice_date"),
                 "seller_tax_id": raw_data.get("seller_tax_id"),
+                "vendor_tax_code": raw_data.get("seller_tax_id"),
                 "seller_name": raw_data.get("seller_name"),
+                "description_summary": desc_summary,
                 "line_items": corrected_items,
                 "subtotal": subtotal_val,
+                "tax_rate": calc_tax_rate,
                 "tax": tax_val,
+                "tax_amount": tax_val,
                 "total": total_val,
                 "bboxes": raw_data.get("bboxes"),
                 "proof_certificate": proof_certificate
