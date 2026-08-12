@@ -18,7 +18,19 @@ def test_visualizer():
     solver = SymbolicSolverEngine(vision_engine=vision)
     visualizer = BoundingBoxVisualizer()
 
-    raw_data = vision.process_invoice_image("sample.png")
+    # Use inline mock data instead of calling process_invoice_image with non-existent file
+    raw_data = {
+        "invoice_id": "HD-TEST-VIZ",
+        "invoice_date": "2026-08-09",
+        "seller_tax_id": "0312345678",
+        "seller_name": "CÔNG TY TEST VIZ",
+        "line_items": [
+            {"item_id": 1, "description": "Test item", "quantity": "2", "unit_price": "10000", "amount": "20000"}
+        ],
+        "subtotal": "95000",
+        "tax": "9500",
+        "total": "104500"
+    }
     verified = solver.solve_and_verify(raw_data)
 
     img = Image.new("RGB", (600, 800), color="#FFFFFF")

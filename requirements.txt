@@ -10,3 +10,4 @@ uvicorn>=0.22.0
 python-multipart>=0.0.6
 pypdf>=3.9.0
 httpx>=0.24.0
+tqdm>=4.65.0

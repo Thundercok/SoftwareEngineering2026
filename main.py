@@ -1,55 +1,118 @@
-"""
-nesy-docai Main Runner / CLI Orchestrator
-"""
+"""NeSy-DocAI CLI — Production Invoice Processing Tool"""
 
-import json
-from nesy_docai import (
-    VisionPerceptionEngine,
-    SymbolicSolverEngine,
-    TaxMasterDataVerifier,
-    AuditExcelExporter
-)
+import argparse
+import logging
+import sys
+import time
+from pathlib import Path
+
+from nesy_docai import __version__
+from nesy_docai.pipeline import NeSyInvoicePipeline
+from nesy_docai.batch_processor import BatchInvoiceProcessor, BatchResult
+from nesy_docai.config import NeSyConfig
+from nesy_docai.csv_exporter import InvoiceCSVExporter
 
 
-def run_pipeline(invoice_image_path: str = "sample_invoice.png", output_excel: str = "invoice_audit_report.xlsx"):
-    print("=" * 60)
-    print("  nesy-docai: Neuro-Symbolic Document AI Research Engine")
-    print("=" * 60)
+def setup_logging(verbose: bool):
+    level = logging.DEBUG if verbose else logging.INFO
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
 
-    # 1. System 1: Vision Perception (Candidate Extraction)
-    print("\n[Step 1] Running System 1 (Visual Perception Engine)...")
-    vision = VisionPerceptionEngine()
-    raw_data = vision.process_invoice_image(invoice_image_path)
 
-    print("  -> Raw OCR Extractions (Contains noise '1O000' and '95OO'):")
-    print(json.dumps(raw_data, ensure_ascii=False, indent=4))
+def main():
+    parser = argparse.ArgumentParser(description="NeSy-DocAI CLI \u2014 Production Invoice Processing Tool")
+    parser.add_argument("input", type=str, help="Path to invoice file, directory, or ZIP archive")
+    parser.add_argument("-o", "--output", type=str, default="output.csv", help="Output file path (default: 'output.csv')")
+    parser.add_argument("-f", "--format", choices=["csv", "xlsx", "json"], default="csv", help="Output format (default='csv')")
+    parser.add_argument("-w", "--workers", type=int, default=4, help="Number of parallel workers (default: 4)")
+    parser.add_argument("--config", type=str, help="Optional config YAML/JSON file path")
+    parser.add_argument("--resume", action="store_true", help="Resume from checkpoint")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose/debug logging")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
+    
+    args = parser.parse_args()
+    setup_logging(args.verbose)
+    logger = logging.getLogger(__name__)
+    
+    input_path = Path(args.input)
+    output_path = Path(args.output)
+    
+    if not input_path.exists():
+        logger.error(f"Input path does not exist: {input_path}")
+        sys.exit(1)
 
-    # 2. System 2: Symbolic Solver (Z3 SMT Verification & Correction)
-    print("\n[Step 2] Running System 2 (Z3 SMT Symbolic Solver)...")
-    solver = SymbolicSolverEngine(vision_engine=vision)
-    verified_record = solver.solve_and_verify(raw_data)
+    config = NeSyConfig()
+    if args.config:
+        config.load(args.config)
+    config.max_workers = args.workers
 
-    print(f"  -> SMT Status: {verified_record.get('audit_status')}")
-    print("  -> Corrected & Verified Data (Presburger Integer Arithmetic verified):")
-    print(json.dumps(verified_record, ensure_ascii=False, indent=4))
+    try:
+        if input_path.is_file() and input_path.suffix.lower() == ".zip":
+            logger.info(f"Processing ZIP file: {input_path}")
+            processor = BatchInvoiceProcessor(config=config)
+            result = processor.process_zip(input_path, output_path)
+            
+            logger.info("Batch Processing Summary:")
+            logger.info(f"Total files: {result.total_files}")
+            logger.info(f"Successful: {result.successful}")
+            logger.info(f"Failed: {result.failed}")
+            logger.info(f"Skipped: {result.skipped}")
+            logger.info(f"Elapsed time: {result.elapsed_seconds:.2f} seconds")
+            logger.info(f"Output path: {result.output_csv}")
 
-    # 3. Tax Master Data Cross-Verification
-    print("\n[Step 3] Cross-verifying Seller Tax ID with General Department of Taxation...")
-    tax_verifier = TaxMasterDataVerifier()
-    tax_info = tax_verifier.verify_tax_id(verified_record.get("seller_tax_id", ""))
-    verified_record["tax_verification"] = tax_info
-    print(f"  -> Tax Status: {tax_info.get('status')} ({tax_info.get('verification_message')})")
+        elif input_path.is_dir():
+            logger.info(f"Processing directory: {input_path}")
+            processor = BatchInvoiceProcessor(config=config)
+            result = processor.process_directory(input_path, output_path, resume=args.resume)
 
-    # 4. Export to Formatted Excel Report
-    print("\n[Step 4] Exporting Multi-Sheet Excel Audit Ledger Report...")
-    exporter = AuditExcelExporter()
-    saved_path = exporter.export_to_excel([verified_record], output_filepath=output_excel)
-    print(f"  -> Excel report saved successfully to: {saved_path}")
+            logger.info("Batch Processing Summary:")
+            logger.info(f"Total files: {result.total_files}")
+            logger.info(f"Successful: {result.successful}")
+            logger.info(f"Failed: {result.failed}")
+            logger.info(f"Skipped: {result.skipped}")
+            logger.info(f"Elapsed time: {result.elapsed_seconds:.2f} seconds")
+            logger.info(f"Output path: {result.output_csv}")
 
-    print("\n" + "=" * 60)
-    print("  Pipeline execution complete! 100% Mathematically & Tax Verified.")
-    print("=" * 60)
+        else:
+            supported_extensions = {".png", ".jpg", ".jpeg", ".pdf"}
+            if input_path.suffix.lower() not in supported_extensions:
+                logger.error(f"Unsupported file type: {input_path.suffix}")
+                sys.exit(1)
+                
+            logger.info(f"Processing single file: {input_path}")
+            start_time = time.time()
+            pipeline = NeSyInvoicePipeline()
+            data = pipeline.process_file(str(input_path))
+            
+            if args.format == "csv":
+                exporter = InvoiceCSVExporter()
+                exporter.export([data], str(output_path))
+            elif args.format == "json":
+                import json
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    json.dump([data], f, ensure_ascii=False, indent=2)
+            else:
+                logger.warning(f"Format {args.format} not fully implemented in this example CLI.")
+                
+            elapsed_time = time.time() - start_time
+            logger.info("Processing Summary:")
+            logger.info(f"Total files: 1")
+            logger.info(f"Successful: 1")
+            logger.info(f"Failed: 0")
+            logger.info(f"Skipped: 0")
+            logger.info(f"Elapsed time: {elapsed_time:.2f} seconds")
+            logger.info(f"Output path: {output_path}")
+
+    except KeyboardInterrupt:
+        logger.info("Process interrupted by user.")
+        sys.exit(1)
+    except Exception as e:
+        logger.exception(f"Fatal error during processing: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
-    run_pipeline()
+    main()

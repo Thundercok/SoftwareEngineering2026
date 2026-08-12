@@ -71,9 +71,21 @@ def test_tax_verifier():
 
 
 def test_excel_exporter(tmp_path):
+    # Use inline mock data instead of calling process_invoice_image with non-existent file
+    raw_data = {
+        "invoice_id": "HD-TEST-001",
+        "invoice_date": "2026-08-09",
+        "seller_tax_id": "0312345678",
+        "seller_name": "CÔNG TY TEST",
+        "line_items": [
+            {"item_id": 1, "description": "Test item", "quantity": "2", "unit_price": "10000", "amount": "20000"}
+        ],
+        "subtotal": "95000",
+        "tax": "9500",
+        "total": "104500"
+    }
     vision = VisionPerceptionEngine()
     solver = SymbolicSolverEngine(vision_engine=vision)
-    raw_data = vision.process_invoice_image("dummy.png")
     verified = solver.solve_and_verify(raw_data)
 
     exporter = AuditExcelExporter()
